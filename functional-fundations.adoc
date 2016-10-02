@@ -1,0 +1,84 @@
+= Functional fundations
+
+`Reactivity` is built on top of a set functional fundations described here.
+They define the fundamental business objects manipulated by the users and their dependencies.
+
+== User
+
+Obviously `Reactivity` manages the `user` who needs to create an account in order to use it.
+There is no particular disposition in the definition of a `user` that differs from the common considerations encountered in softwares.
+
+== Organization
+
+The `organization` is a working space created by a user where the activity is managed.
+The creator of an `organization` is free to invite other `users` to join it and interract with them inside that space.
+
+== Artifact
+
+`Artifacts` are objects created by the users to represents their activity.
+A fundamental property for the artifact is the `date`, whose meaning is up to the user.
+
+The rest of their structure is composed by a set of fields.
+Some of the fields are immutable, can be mandatory and pre-defined by the `Reactivity`.
+Those particular fields will be mentionned inside the `Category` section.
+This section will also explain who how additional fields can be defined at organization level by the users to track additional activity information in the artifacts.
+
+== Category
+
+`Categories` are activity qualifiers.
+They can be defined as a catalog of free values at `organization` level.
+A `category` can be used to tag an activity and identified as a field of the artifact, marked as optional or not by the `user`.
+This offers filtering and grouping capabilities.
+`Reactivity` defines built in categories with a data source based on the organization's state:
+
+* User: the `user category` is an artifact's field optionally filled that is composed of the users associated to the current selected organization.
+* Status: a `status category` is an artifact's field optionnally filled with `TODO`, `WIP` or `DONE` value.
+* Interval: an `interval` allows to group the activity by `day`, `week` or `month`. This `category` can't be associated to an artifact but allows a `table view` to compute its `date`, as described in the `Table` section.
+
+Following rules are defined for the `categories`:
+
+* `User` and `Status` categories can be customized at organization level. Additional items can be added with free labels and pre-defined items can be renamed or removed.
+* If the `day interval` category is used, the date of the artifact is automatically computed according to the associated day.
+
+== View
+
+A `view` is a representation of the activity produced over a period of time by the `users` inside an `organization`.
+
+This fundamental object defines from when the activity of the `organization` will be viewed.
+A `view` can have an optional `end date`.
+If no `end date` is defined, the period covers all the activity newer than the `start date`.
+
+Optionally the view can be also associated to a category that will be used to filter more the activity to display.
+Artifact created in that view will be automatically associated to that category.
+
+Many `views` can be defined inside an `organization`.
+A `view` is also typed with the structure of data that is ready to consume.
+Those structures have a immutable definition and are enumerated by the `Reactivity` for all `organizations`.
+
+=== Table
+
+A `table` is a data structure that can type a `view`.
+A `table` displays the `artifacts` in a matrix with one dimension (column) or optionally with two dimensions (columns + rows).
+Columns and rows are defined with the available `categories` (`user`, `status`, `interval` and additional catalogs defined in the organization).
+When the `categories` that are used to list the columns or the rows, they values are automatically field in the artifact regarding its position inside the `table`.
+
+When the `artifact` 's fields values corresponding to the `category` used in the columns and the rows are not defined, `artifacts` are displayed outside the `table`.
+A zone dedicated to that purpose is visible and is part of the `table` type.
+
+When an `interval category` is used to define the columns or the rows, the `artifact date` is automatically computed with the associated value that has been obtained relatively to the `starting date` of the `view`.
+
+==== Time series
+
+`Time series` is a data structure that type a `view`.
+The values correspond to the result of an operation that has counted the number of `artifacts` by grouping them with a particular `category` value.
+The result of that transformation allows the `view` to let the `user` chose between different kind of chart (`line`, `pie`, `bar`, `gauge`, etc). 
+
+== Summary
+
+Following fundamental objects have been defined:
+
+* `User`: people who interract with `Reactivity` to manage their activity
+* `Organization`: the space where `users` manage their activity
+* `Artifact`: the object that reflects the `user` activity
+* `View`: the way activity is viewed by `users` and which activity of the `organization`
+* `Table` or `Time series`: a data structure selected by the `view` according to its needs to display the data
