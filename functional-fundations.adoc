@@ -15,19 +15,19 @@ The creator of an `organization` is free to invite other `users` to join it and 
 
 == Artifact
 
-`Artifacts` are objects created by the users to represents their activity.
-A fundamental property for the artifact is the `date`, whose meaning is up to the user.
+`Artifacts` are objects created by the users to represent their activity.
+A fundamental property of the artifact is the `date`, whose meaning is up to the user.
 
 The rest of their structure is composed by a set of fields.
-Some of the fields are immutable, can be mandatory and pre-defined by the `Reactivity`.
+Some of the fields are immutable, can be mandatory and pre-defined by `Reactivity`.
 Those particular fields will be mentionned inside the `Category` section.
-This section will also explain who how additional fields can be defined at organization level by the users to track additional activity information in the artifacts.
+This section will also explain how additional fields can be defined at organization level by the users to track additional activity information in the artifacts.
 
 == Category
 
 `Categories` are activity qualifiers.
 They can be defined as a catalog of free values at `organization` level.
-A `category` can be used to tag an activity and identified as a field of the artifact, marked as optional or not by the `user`.
+A `category` can be used to tag an activity and is identified as a field of the artifact, marked as optional or not by the `user`.
 This offers filtering and grouping capabilities.
 `Reactivity` defines built in categories with a data source based on the organization's state:
 
@@ -53,14 +53,14 @@ Artifact created in that view will be automatically associated to that category.
 
 Many `views` can be defined inside an `organization`.
 A `view` is also typed with the structure of data that is ready to consume.
-Those structures have a immutable definition and are enumerated by the `Reactivity` for all `organizations`.
+Those structures have a immutable definition and are enumerated by `Reactivity` for all `organizations`.
 
 === Table
 
 A `table` is a data structure that can type a `view`.
 A `table` displays the `artifacts` in a matrix with one dimension (column) or optionally with two dimensions (columns + rows).
 Columns and rows are defined with the available `categories` (`user`, `status`, `interval` and additional catalogs defined in the organization).
-When the `categories` that are used to list the columns or the rows, they values are automatically field in the artifact regarding its position inside the `table`.
+When the `categories` are used to list the columns or the rows, their values are automatically associated to the artifact regarding its position inside the `table`.
 
 When the `artifact` 's fields values corresponding to the `category` used in the columns and the rows are not defined, `artifacts` are displayed outside the `table`.
 A zone dedicated to that purpose is visible and is part of the `table` type.
