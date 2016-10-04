@@ -55,6 +55,8 @@ Many `views` can be defined inside an `organization`.
 A `view` is also typed with the structure of data that is ready to consume.
 Those structures have a immutable definition and are enumerated by `Reactivity` for all `organizations`.
 
+A `view` can be marked as private by the `user` who creates it in order to not make it visible by the others.
+
 === Table
 
 A `table` is a data structure that can type a `view`.
@@ -82,3 +84,5 @@ Following fundamental objects have been defined:
 * `Artifact`: the object that reflects the `user` activity
 * `View`: the way activity is viewed by `users` and which activity of the `organization`
 * `Table` or `Time series`: a data structure selected by the `view` according to its needs to display the data
+
+A set of basic link:mockups.pdf[mockups] illustrates how the different objects can be managed through the UI.
