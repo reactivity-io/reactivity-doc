@@ -39,4 +39,4 @@ Routing messages with guarantee of delivery, ordering preservation, acknowledgem
 That streaming platform will allow all producers and consumers to register themselves.
 This is that platform that will receive all messages from producers and push them to consumers.
 
-image:streaming-platform.png
+image:streaming-platform.png[]
