@@ -2,7 +2,7 @@
 
 === Based on reactive streams
 
-`Reactivity` architecture allows the system to face an unpredictible load of data when the users, the data sources or even the resources of some parties inside the is scale.
+`Reactivity` architecture allows the system to face an unpredictible load of data when the users, the data sources or even the resources of some parties inside the information system scale.
 This is why all the core http://www.reactive-streams.org[architecture] heavily uses the reactive streams where each service acts as a consumer and/or as a producer, emphasing an event-driven model in all layers.
 
 === Event-driven system
