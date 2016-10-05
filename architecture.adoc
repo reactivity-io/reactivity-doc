@@ -1,0 +1,42 @@
+== Principles
+
+=== Based on reactive streams
+
+`Reactivity` architecture allows the system to face an unpredictible load of data when the users, the data sources or even the resources of some parties inside the is scale.
+This is why all the core http://www.reactive-streams.org[architecture] heavily uses the reactive streams where each service acts as a consumer and/or as a producer, emphasing an event-driven model in all layers.
+
+=== Event-driven system
+
+The event driven system is ready to route messages from source to sink in both live and batch contexts.
+This need comes from the necessity to cover messaging based communication between the users and also asynchronous streams processing to prepare the data for some views.
+Since everything is message, it's mandatory to expect that a message is going to be consumed by different consumers for different purpose.
+This case is typically well illustrating by `RabbitMQ` documentation when talking about `direct exchange routing`.
+
+image:https://www.rabbitmq.com/img/tutorials/intro/exchange-direct.png[]
+
+We can see that there is as many consumer with different purpose as many routing keys are declared.
+But it's important to notice that two consumers for the same purpose can be registered, and only one of them will consume the message.
+
+=== Stream processing capabilities
+
+`Reactivity` architecture expects a various number of streams and transformations of those streams.
+The transformation phase requires messages to be delivered in the same order they are publishing.
+This means also that if a consumer fails to acknowledge a message consumption, it must be able to easily retry to process the same message before treating a new one.
+
+Transformation can be also aggregations to satisfy some user views requirements.
+This means that a stream can be composed of different streams.
+
+There is no reason to exclude some system interractions from the asynchronous messaging model.
+Even a click from a user can be considered as a stream source.
+
+image:https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67[https://github.com/staltz]
+
+This consideration can be wrong in a few cases where technical constraints make more realistic a different technique.   
+
+=== Streaming platform
+
+Routing messages with guarantee of delivery, ordering preservation, acknowledgement mechanism and high performance must be addressed by a distributed streaming platform.
+That streaming platform will allow all producers and consumers to register themselves.
+This is that platform that will receive all messages from producers and push them to consumers.
+
+image:streaming-platform.png
