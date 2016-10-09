@@ -40,3 +40,14 @@ That streaming platform will allow all producers and consumers to register thems
 This is that platform that will receive all messages from producers and push them to consumers.
 
 image:streaming-platform.png[]
+
+=== Microservice architecture
+
+The streaming platform will interact with producers and consumers in respect of http://www.martinfowler.com/articles/microservices.html[microservice architecture definition].
+This mainly means that a consumer or a producer is considered as a component serving one purpose, exposing a clear API and easy to replace in the information system.
+
+A microservice is autonomous as much as possible which is possible when control of data is decentralized.
+Consumers and producers can take advantage of this by embedding their own database, which can lead to a duplication of data.
+A consistency check mechanism should be considered to regularly make sure that a database is not incorrectly synchronized with others.
+In case of unexpected desynchronization (typically a state that is expected to be synchronized regarding the messages that are delivered and those who are not), a re-initialization of that data should be possible.
+Message streaming should be used as much as possible to replicate a data from scratch, including transformations process.
