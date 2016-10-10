@@ -69,3 +69,62 @@ http://kafka.apache.org[Apache Kafka] is the central platform of `Reactivity` th
 * *Ordering*: `Kafka` stores the messages in a partition that is ordered, giving the guarantee that messages have been consumed in the order they are emitted. This aspect is a key requirements for `Reactivity` as described in the architecture principles.
 * *Acknowledgment*: Thanks to the offset commit technique, `Kafka` provides a very simple acknowledgement capability that consumers can use to guarantee that messages will be consumed in `Reactvity` system.
 * *Consumer group*: `Kafka` allows consumers to be grouped with a simple label attached to them. This allows a message to be consumed for different purpose and to let the consumers scale without the risk to perform an action twice because of consumption duplication.
+
+=== Spring 5 as consumer/producer stack
+
+==== Spring Web Reactive
+
+`Spring` version 5 comes with a http://docs.spring.io/spring-framework/docs/5.0.0.M1/spring-framework-reference/html/web-reactive.html[Spring Web Reactive] support which allows to exchange data in respect of reactive streams.
+The core API implementation for reactive streams with `Spring` is https://projectreactor.io[Reactor].
+
+Web Reactive support relies on servers without the requiring `Servlet` API, which means that `Netty` can be used as well as `Tomcat`.
+The more focused, low-level approach of `Netty` fits nicely the scope of the consumer and the producer in `Reactivity`, which makes it a preferable solution.
+
+On top of that, consumers and producers will be able to use the `REST` support in `Spring` WEB to easily collaborate with the other components of the system.
+This communication interface can complement with additional `Spring` components described in the next sections.
+
+==== Spring Data
+
+In addition to the WEB module, `Spring Data` also uses `Reactor` to provide a complete asynchronous streaming pipeline from the database to the HTTP response.
+The project offers a good level of abstraction with the different database providers and remains a strong partner in development using `Spring` when interractions with database are required.
+Obviously, data need to be stored and read in `Reactivity`.
+`Spring Data` will be key for this kind of manipulations.
+
+==== Spring Cloud Stream
+
+https://cloud.spring.io/spring-cloud-stream[Spring Cloud Stream] is a project that helps interacting with message driven middleware.
+It provides a dedicated support for `Kafka` with an unified API that brings some abstractions in provider interractions.
+This project will help consumers and producers to connect with `Kafka` in order to receive and emit messages.
+
+==== Spring Cloud
+
+http://projects.spring.io/spring-cloud[Spring Cloud] brings a lot of key components to address deployment issues for a application supposed to be scalable and highly available: 
+
+* Service discovery of consumers and producers in the system to automatically scale
+* Circuit breaker in consumers and producers in the system to be more fault-tolerant
+* Property management to coordinate all consumers and producers configuration
+* Client load balancing to easily control the trafic between components without the need to install a load balancer everywhere
+
+==== Spring REST Docs
+
+https://projects.spring.io/spring-restdocs[Spring REST Docs] provides a very handy way to document and test the APIs in a single activity.
+It extends the integration testing API of `Spring` to build `AsciiDoc` files regarding the assertions performed on the services that are test.
+This projects answer the need to documentation in an easy maintainance way.
+
+==== Spring Security
+
+http://projects.spring.io/spring-security[Spring Security] project provides a very large of techniques that allows to secure `Reactivity`.
+This framework will be leverage on the consumers and producers that need to deal with user authentication and authorizations.
+
+==== Spring Boot
+
+http://projects.spring.io/spring-boot[Spring Boot] allows to quickly build a standalone component, easy to package in a uber JAR that make it easy to deploy and run.
+This completely emphasizes the Microservice architecture style and will be a key framework to support consumers and producers development.
+
+Almost all the `Spring` projects has support in `Spring Boot` that ease their integration with a `conventions over configuration` approach.
+
+It also brings the key capabilities covering various issues of `Reactivity`:
+
+* Monitoring of the different consumers and producers in the system with the `Actuator` module
+* Integration testing of the services provided by the consumers and the producers
+* Development tool with per environment configuration and hot reload support
