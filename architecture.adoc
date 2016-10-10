@@ -59,3 +59,13 @@ Message streaming should be used as much as possible to replicate a data from sc
 Technologies selected in respect of architecture principles must be open source.
 Selection process must have a particular attention to the license to avoid patent or viral clause in the open source license.
 `Apache 2.0` and `MIT` licenses are the typical open source license recommended for the technologies used by `Reactivity`.
+
+=== Kafka as distributed streaming platform
+
+http://kafka.apache.org[Apache Kafka] is the central platform of `Reactivity` that takes messages sent by producers and delivers them to consumers.
+`Kafka` provides the key following benefits that make it a perfect solution for `Reactivity` requirements:
+
+* *Scalability*: `Kafka` is distributed, which make that solution highly scalable. It uses https://zookeeper.apache.org[ZooKeeper] as service discovery system to keep the nodes in touch, which ease operations.
+* *Ordering*: `Kafka` stores the messages in a partition that is ordered, giving the guarantee that messages have been consumed in the order they are emitted. This aspect is a key requirements for `Reactivity` as described in the architecture principles.
+* *Acknowledgment*: Thanks to the offset commit technique, `Kafka` provides a very simple acknowledgement capability that consumers can use to guarantee that messages will be consumed in `Reactvity` system.
+* *Consumer group*: `Kafka` allows consumers to be grouped with a simple label attached to them. This allows a message to be consumed for different purpose and to let the consumers scale without the risk to perform an action twice because of consumption duplication.
