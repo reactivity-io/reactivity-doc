@@ -51,3 +51,11 @@ Consumers and producers can take advantage of this by embedding their own databa
 A consistency check mechanism should be considered to regularly make sure that a database is not incorrectly synchronized with others.
 In case of unexpected desynchronization (typically a state that is expected to be synchronized regarding the messages that are delivered and those who are not), a re-initialization of that data should be possible.
 Message streaming should be used as much as possible to replicate a data from scratch, including transformations process.
+
+== Key technologies
+
+=== Based on OSS
+
+Technologies selected in respect of architecture principles must be open source.
+Selection process must have a particular attention to the license to avoid patent or viral clause in the open source license.
+`Apache 2.0` and `MIT` licenses are the typical open source license recommended for the technologies used by `Reactivity`.
