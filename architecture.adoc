@@ -128,3 +128,14 @@ It also brings the key capabilities covering various issues of `Reactivity`:
 * Monitoring of the different consumers and producers in the system with the `Actuator` module
 * Integration testing of the services provided by the consumers and the producers
 * Development tool with per environment configuration and hot reload support
+
+=== Couchbase server as document database
+
+WEB technologies such as `Javascript` describe object structures in `JSON` format.
+This format is also used in document oriented databases.
+Each artefact can be represented in a single document that will be loaded by the database when requested by the user in a particular view.
+Some transformation results can be also represented in a document, which makes document database adapted for `Reactivity` requirements.
+
+`Couchbase` is document oriented database and distributed by design that meets the scalability requirements of `Reactivity`.
+This database also provides additional interesting products like embedded database for mobile that can be leveraged to cover new features.
+This is why our primary choice goes for `Couchbase` server to store the data of `Reactivity`.
