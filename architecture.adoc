@@ -60,6 +60,15 @@ Technologies selected in respect of architecture principles must be open source.
 Selection process must have a particular attention to the license to avoid patent or viral clause in the open source license.
 `Apache 2.0` and `MIT` licenses are the typical open source license recommended for the technologies used by `Reactivity`.
 
+=== Java 8 as base line version
+
+The latest version of `Java` is the version 8.
+This version will be used in the core of `Reactivity` as it's well maitained by `Oracle`, provides new features (especially around the `Stream` API) and is required by different technologies selected in the next section.
+
+The goal of `Reactivity` is also to take advantage from the features introduced in next `Java` releases and be upgraded to `Java` 9 when available.
+
+== Framework and platforms
+
 === Kafka as distributed streaming platform
 
 http://kafka.apache.org[Apache Kafka] is the central platform of `Reactivity` that takes messages sent by producers and delivers them to consumers.
