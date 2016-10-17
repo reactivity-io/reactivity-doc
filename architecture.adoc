@@ -148,3 +148,67 @@ Some transformation results can be also represented in a document, which makes d
 `Couchbase` is document oriented database and distributed by design that meets the scalability requirements of `Reactivity`.
 This database also provides additional interesting products like embedded database for mobile that can be leveraged to cover new features.
 This is why our primary choice goes for `Couchbase` server to store the data of `Reactivity`.
+
+== Components architecture view
+
+=== Overview
+
+Different components will interract with different roles:
+
+* Service discovery
+* Producers and consumers
+* Web application
+* Database
+* Streaming platform
+
+             ++++++++++++++++++++++++++++++     REST      +++++++++++++++++++++++++++++++++
+             +                            +-------------->+ Service discovery - ZooKeeper +<----------+----------+
+             +                            +               +++++++++++++++++++++++++++++++++           |          |
+             + Streaming Platform - KAFKA +                                                           |          |
+             +                            +                                                           |          |
+             +                            +                                                           |          |
+             ++++++++++++++++++++++++++++++                                                           |          |
+                + API +                  |                                                            |          |
+                +++++++                  | CONSUMER API                                               |          |
+                   ^                     v                                                            |          |
+                   | REST             +++++++++++++++++++++++++++++    DB DRIVER    ++++++++++++++++++++++++     |
+                   |                  +        Broadcaster        +---------------->+                      +     |
+                   |                  +       Reactivity API      +                 + Couchbase - Database +     |
+                   |                  +         Spring Boot       +                 +                      +     |
+                   |                  +++++++++++++++++++++++++++++                 ++++++++++++++++++++++++     |
+                   |                         |        |                                                          |
+               +++++++++++++++        SSE    |        +----------------------------------------------------------+
+               + WebApp - JS +<--------------+
+               +++++++++++++++
+
+=== Service discovery
+
+`ZooKeeper` is used as a centralized system to resolve all microservices.
+It's deployed in a highly available cluster where nodes replicate their configuration to each others.
+Microservices register themselves to `ZooKeeper` and retrieve dependencies through it.
+
+=== Streaming platform
+
+The streaming platform implemented with `Kafka` offers a `REST` API that can be consumed to produce new artifacts.
+When a new event is received by `Kafka`, it keeps it until it has been delivered and acknowledge by a consumer.
+`Kafka` is deployed as a cluster of multiple distributed nodes.
+All nodes register to `ZooKeeper`.
+
+=== Database
+
+`Couchbase` is the document oriented database that stores data of `Reactivity`.
+This distributed system is deployed as a cluster where nodes register to `ZooKeeper`.
+Asynchronous driver is available to read and write documents to the database.
+
+=== Consumers and producers
+
+==== Broadcaster and API
+
+A `Spring Boot` application represents a microservice that suspends `SSE` connections to stream data from `Couchbase`.
+It also receives new data to be serialized through `Kafka` and aknowledges their consuption.
+When an event is aknowledged, it's broadcasted to all suspended `SSE` connections.
+
+==== Web application
+
+The web application consumes `SSE` streams from the back-end.
+It also pushes new messages to the `Kafka` service to be validated asynchronously by `Reactivity`.
