@@ -1,0 +1,90 @@
+== Principles
+
+`Reactivity` stores and exchange data in the `JSON` format.
+One reason why `JSON` is used is the flexibility it offers in the data model.
+
+This documentation describes the mandatory fields that must be found in a `JSON` document and which path can be freely structured.
+The documentation also pays attention to the data model which is persisted to the database comparing to the informations dedicated to event types.
+Moreover, since everything is stream in `Reactivity`, different fields of the data model are flagged to understand when they are defined and where they transit inside the system.
+
+== Events stream
+
+Data are always wrapped to an event.
+This allows `Reactivity` to understand what to do with the data.
+Therefore, any producer must use a particular data structure in their `JSON` document to wrap their data:
+
+    {
+		"version" : "The module version",
+		"event" : "The event type here",
+		"data" : "The data here",
+		"timestamp" : "The event timestamp",
+		"id" : "The event ID"
+	}
+	
+=== version
+
+The `version` is a value indicating the version of the module that produces the message.
+This version can be used by the consumer to know what kind of assertion can be made on the data.
+By default, new version must be backward compatible which means that a consumer should be able to deal with an event flagged with an older version.
+
+Version format follows the http://semver.org[semver] protocol.
+
+=== event 
+
+The `event` describes the nature of the message.
+The possible values are an enumeration specific to the type of data contained inside the message.
+
+No field in the message indicates the type of data because it corresponds to the topic they are published to.
+In the core module, messages can be published to the following topic:
+
+* `user`: the topic where events related to `Users` are published
+* `organization`: the topic where events related to `Organization` are published  
+* `artifact`: the topic where events related to `Artifacts` are published
+
+=== data
+
+The `data` contains the payload of the event provided by the producer.
+The structure of the data depends on the topic where is has been published, the `event` and `version` fields values.
+The consumer will use those informations to know what structure is expected in the `data` value.
+
+=== timestamp and id
+
+`timestamp` and `id` are not defined by the producer but are assigned by the streaming platform.
+They allow to identify the message inside `Reactivity` system and to know when it has been published by the consumer.
+
+=== Extensions
+
+==== Additional data types definition
+
+Extensions are allowed to define their own type of data stored in dedicated `buckets` (the document space in `Couchbase`) and sent through specific `topics` (in `Kafka`).
+It's strongly recommended for an extension to use the same message structure described in previous sections.
+
+To avoid clashes with build-in features of `Reactivity`, any extension `topic` and `bucket` must follow the pattern `[extension-id]/[topic-name]`.
+The `extension-id` is an unique identifier for the extension in `Reactivity`.
+This value must be used when the extension creates its own topic. 
+The `topic-name` is a value each extension is free to define. 
+This allows the extensions to define as much as data type they want and store their associated documents independently to the database.
+
+==== Built-in data types extension
+
+When an extension extends an existing data type (`Artifacts`, `Users` or `Organizations`), the mechanism is different.
+The extension is allowed to modify the document created by the built-in features of `Reactivity`.
+In that scenario, the extension is integrated to a stream processing module that intercepts messages comming from a targetted topic (`user`, `artifact` or `organization`).
+The extension can validate the message payload and discard it in case of rule violation, modify the payload or trigger any specific action before the message is persisted. 
+
+The extension is free to manage specific properties at any level of the message.
+For instance:
+
+    {
+		"version" : "The module version",
+		"event" : "The event type here",
+		"data" : {
+			"my-extension-some-property" : "some value"
+		},
+		"timestamp" : "The event timestamp",
+		"id" : "The event ID",
+		"my-extension-some-property" : "some value"		
+	}
+
+It's strongly recommended that an extension does not add specific properties in a different place than what is defined in the above example.
+Making assertion on the `data` field structure to add properties in a deeper path is possible but it would strongly couple the core with the extension, which would potentially lead to lots of regressions after a new release.
