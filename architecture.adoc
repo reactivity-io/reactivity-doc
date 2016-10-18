@@ -202,11 +202,15 @@ Asynchronous driver is available to read and write documents to the database.
 
 === Consumers and producers
 
-==== Broadcaster and API
+==== Broadcaster
 
-A `Spring Boot` application represents a microservice that suspends `SSE` connections to stream data from `Couchbase`.
-It also receives new data to be serialized through `Kafka` and aknowledges their consuption.
-When an event is aknowledged, it's broadcasted to all suspended `SSE` connections.
+A `Spring Boot` application which represents a microservice that suspends `SSE` connections to stream data from `Couchbase`.
+It also receives events from `Kafka` like persisted/new message notification that are broadcasted to all suspended `SSE` connections.
+
+==== API
+
+A `Spring Boot` application which receives from `Kafka` new data to be serialized through `Couchbase` and aknowledges their consuption.
+Once data are persisted, a notification is also sent through `Kafka` to broadcast this information to all registered consumers.
 
 ==== Web application
 
