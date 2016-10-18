@@ -52,6 +52,25 @@ A consistency check mechanism should be considered to regularly make sure that a
 In case of unexpected desynchronization (typically a state that is expected to be synchronized regarding the messages that are delivered and those who are not), a re-initialization of that data should be possible.
 Message streaming should be used as much as possible to replicate a data from scratch, including transformations process.
 
+=== Extensible
+
+`Reactivity` has a core concept but producing and consuming data can take different forms.
+This is why `Reactivity` must be extensible by providing a pluggable API allowing extensions to register to the system.
+An extension can cover different capabilities.
+
+==== Data synchronization
+
+An extension connects to a different source of data and import from it a set of data stored as a set of `Artifacts`.
+The extension must be reactive to changes in that source and incrementally update `Reactivity`.
+The extension can be notified by changes in `Reactivity` in order to leverage bi-directional synchronization.
+
+==== Artifact extension
+
+An extension defines additional build-it functionalities allowing to manage more information and interractions inside an `Artifact`.
+This means that the original data model inside an `Artifact` can be extended by each extension.
+This also means that specific actions defined by the extensions can be trigerred when user interracts with that data.
+Most of the time, an `Artifact` extension will embed data synchronization capabilities.  
+
 == Key technologies
 
 === Based on OSS
@@ -149,6 +168,8 @@ Some transformation results can be also represented in a document, which makes d
 This database also provides additional interesting products like embedded database for mobile that can be leveraged to cover new features.
 This is why our primary choice goes for `Couchbase` server to store the data of `Reactivity`.
 
+Since a `JSON` document data model can be easily extended by addibg more properties to it, `Couchbase` also offers the opportunity to dynamically add extensions to `Reactivity`.
+
 == Components architecture view
 
 === Overview
@@ -160,27 +181,32 @@ Different components will interract with different roles:
 * Web application
 * Database
 * Streaming platform
+* Extensions
 
              ++++++++++++++++++++++++++++++     REST      +++++++++++++++++++++++++++++++++
              +                            +-------------->+ Service discovery - ZooKeeper +<----------+----------+
-             +                            +               +++++++++++++++++++++++++++++++++           |          |
-             + Streaming Platform - KAFKA +                                                           |          |
-             +                            +                                                           |          |
-             +                            +                                                           |          |
-             ++++++++++++++++++++++++++++++                                                           |          |
-                + API +                  |                                                            |          |
-                +++++++                  | CONSUMER API                                               |          |
-                   ^                     v                                                            |          |
-                   | REST             +++++++++++++++++++++++++++++    DB DRIVER    ++++++++++++++++++++++++     |
-                   |                  +        Broadcaster        +---------------->+                      +     |
-                   |                  +       Reactivity API      +                 + Couchbase - Database +     |
-                   |                  +         Spring Boot       +                 +                      +     |
-                   |                  +++++++++++++++++++++++++++++                 ++++++++++++++++++++++++     |
-                   |                         |        |                                                          |
-               +++++++++++++++        SSE    |        +----------------------------------------------------------+
-               + WebApp - JS +<--------------+
-               +++++++++++++++
-
+             +                            +               +++++++++++++++++++++++++++++++++      |    |          |
+             + Streaming Platform - KAFKA +                                                      |    |          |
+             +                            +      CONSUMER API     ++++++++++++++++++++           |    |          |
+             +                            +<------------+---------+ Extension(s) ... +-----------+    |          |
+             ++++++++++++++++++++++++++++++   REST      |         ++++++++++++++++++++                |          |
+			                     |  + API +<-------+    |              + STATICS +  |                 |          |
+			                     |  +++++++        |    |              +++++++++++  |                 |          |
+								 |                 |    |                  ^        |                 |          |
+                                 |               ++++++++++++++++          |        |DB DRIVER        |          |
+                                 |               +  WebApp - JS +----------+        +--------+        |          |
+                                 |               ++++++++++++++++                            |        |          |
+				                 |                     ^                                     |        |          |
+				                 |                     | SSE                                 |        |          |
+				                 |                     |                                     v        |          |
+                                 |    +++++++++++++++++++++++++++++    DB DRIVER    ++++++++++++++++++++++++     |
+                                 +--->+        Broadcaster        +---------------->+                      +     |
+                                      +       Reactivity API      +                 + Couchbase - Database +     |
+                                      +         Spring Boot       +                 +                      +     |
+                                      +++++++++++++++++++++++++++++                 ++++++++++++++++++++++++     |
+                                                      |                                                          |
+                                                      +----------------------------------------------------------+
+             
 === Service discovery
 
 `ZooKeeper` is used as a centralized system to resolve all microservices.
@@ -216,3 +242,15 @@ Once data are persisted, a notification is also sent through `Kafka` to broadcas
 
 The web application consumes `SSE` streams from the back-end.
 It also pushes new messages to the `Kafka` service to be validated asynchronously by `Reactivity`.
+
+=== Extensions
+
+Extensions are playing the role of additional API.
+Recommended technology for their implementation is `Spring Boot` but it's not mandatory.
+However, an extension must follow the standards defined by `Reactivity` architecture:
+
+* A micro service that registers to `ZooKeeper`
+* Consumes data through `Kafka` connectors
+* Persist data to `Couchbase` and send notification through `Kafka`
+
+Additional statics (`JS`, `CSS`, `HTML`) can be also served to the web application in order to extend the user experience of `Reactivity`.
