@@ -233,10 +233,21 @@ Asynchronous driver is available to read and write documents to the database.
 A `Spring Boot` application which represents a microservice that suspends `SSE` connections to stream data from `Couchbase`.
 It also receives events from `Kafka` like persisted/new message notification that are broadcasted to all suspended `SSE` connections.
 
+The broadcaster can be deployed as a set of instances where `SSE` connections are balanced.
+This means that each instance must be in a different consumer group to be notified by `Kafka` when a notification is sent.
+In fact, a notification must be sent to all suspended connections.
+Therefore, each instance of the broadcaster must receive the events from `Kafka`.
+
 ==== API
 
 A `Spring Boot` application which receives from `Kafka` new data to be serialized through `Couchbase` and aknowledges their consuption.
 Once data are persisted, a notification is also sent through `Kafka` to broadcast this information to all registered consumers.
+
+The API can be deployed as a set of instances where messages sent by `Kafka` will be balanced.
+This means that all instances must be part of the same consumer group to make sure only one of them will be notified.
+In fact, we don't want to persist the same event and send the same notification twice.
+
+image:http://kafka.apache.org/images/consumer-groups.png[]
 
 ==== Web application
 
