@@ -183,29 +183,36 @@ Different components will interract with different roles:
 * Streaming platform
 * Extensions
 
-             ++++++++++++++++++++++++++++++     REST      +++++++++++++++++++++++++++++++++
-             +                            +-------------->+ Service discovery - ZooKeeper +<----------+----------+
-             +                            +               +++++++++++++++++++++++++++++++++      |    |          |
-             + Streaming Platform - KAFKA +                                                      |    |          |
-             +                            +      CONSUMER API     ++++++++++++++++++++           |    |          |
-             +                            +<------------+---------+ Extension(s) ... +-----------+    |          |
-             ++++++++++++++++++++++++++++++   REST      |         ++++++++++++++++++++                |          |
-                                 |  + API +<-------+    |              + STATICS +  |                 |          |
-                                 |  +++++++        |    |              +++++++++++  |                 |          |
-                                 |                 |    |                  ^        |                 |          |
-                                 |               ++++++++++++++++          |        |DB DRIVER        |          |
-                                 |               +  WebApp - JS +----------+        +--------+        |          |
-                                 |               ++++++++++++++++                            |        |          |
-                                 |                     ^                                     |        |          |
-                                 |                     | SSE                                 |        |          |
-                                 |                     |                                     v        |          |
-                                 |    +++++++++++++++++++++++++++++    DB DRIVER    ++++++++++++++++++++++++     |
-                                 +--->+        Broadcaster        +---------------->+                      +     |
-                                      +       Reactivity API      +                 + Couchbase - Database +     |
-                                      +         Spring Boot       +                 +                      +     |
-                                      +++++++++++++++++++++++++++++                 ++++++++++++++++++++++++     |
-                                                      |                                                          |
-                                                      +----------------------------------------------------------+
+             ++++++++++++++++++++++++++++++               +++++++++++++++++++++++++++++++++                       
+             +                            +      REST     +         Service discovery     +                       
+             +                            +-------------->+-------------------------------+        REST           
+             +                            +               +             ZooKeeper         +<-----+--------+------+
+             +     Streaming Platform     +               +++++++++++++++++++++++++++++++++      |        |      |
+             +                            +                                                      |        |      |
+             +                            + KAFKA CLIENT ++++++++++++++++++++++++++++++++++      |        |      |
+             +                            +<------------>+          Broadcaster           +------+        |      |
+             +                            +              +--------------------------------+               |      |
+             +----------------------------+              +          Spring Boot           +               |      |
+             +           KAFKA            +              ++++++++++++++++++++++++++++++++++               |      |
+             ++++++++++++++++++++++++++++++   REST            ^        + STATICS +  |                     |      |
+                       ^            + API +<-------+          |        +++++++++++  |                     |      |
+                       |            +++++++        |      SSE |            ^        |                     |      |
+                       |                           |          |            |        |                     |      |
+                       |                           |          |            |        |                     |      |
+                       |                         ++++++++++++++++   HTTP   |        |  DB DRIVER          |      |
+                       |                         +    WebApp    +----------+        +--------------+      |      |
+                       |                         +--------------+                                  |      |      |
+                       |                         +  JAVASCRIPT  +                                  |      |      |
+                       |                         ++++++++++++++++                                  v      |      |
+                       |                                                                         +++++++++++++   |
+                       |                                                              DB DRIVER  + Database  +   |
+                       |                                                            +----------->+-----------+   |
+                       |                                                            |            + Couchbase +   |
+                       |              +++++++++++++++++++++++++++++++++++++++++++++++++++++++++  +++++++++++++   |
+                       | KAFKA CLIENT + Extensions -> Validation API -> Persistance Component +                  |
+                       +------------->+ ------------------------------------------------------+                  |
+                                      +                       Spring Boot                     +------------------+
+                                      +++++++++++++++++++++++++++++++++++++++++++++++++++++++++                   
              
 === Service discovery
 
@@ -231,19 +238,24 @@ Asynchronous driver is available to read and write documents to the database.
 ==== Broadcaster
 
 A `Spring Boot` application which represents a microservice that suspends `SSE` connections to stream data from `Couchbase`.
-It also receives events from `Kafka` like persisted/new message notification that are broadcasted to all suspended `SSE` connections.
+It also receives new message notifications from `Kafka` that are broadcasted to all suspended `SSE` connections.
 
 The broadcaster can be deployed as a set of instances where `SSE` connections are balanced.
 This means that each instance must be in a different consumer group to be notified by `Kafka` when a notification is sent.
 In fact, a notification must be sent to all suspended connections.
 Therefore, each instance of the broadcaster must receive the events from `Kafka`.
 
-==== API
+==== Validator API and Persistance component
 
-A `Spring Boot` application which receives from `Kafka` new data to be serialized through `Couchbase` and aknowledges their consuption.
-Once data are persisted, a notification is also sent through `Kafka` to broadcast this information to all registered consumers.
+A `Spring Boot` application which receives from `Kafka` new data to be serialized through `Couchbase` and aknowledges their consumption.
+Before a message is persisted, a validation API must be invoked to make sure no data consistency rule is violated.
+If the message is not valid, it's discarded.
+If the message is valid, it's persisted and sent to the broadcaster through a `Kafka` topic.
 
-The API can be deployed as a set of instances where messages sent by `Kafka` will be balanced.
+The validation API has a pluggable architecture where extensions can be registered to customize the validation logic for the built-in topics but also additional topics.
+Additional statics (`JS`, `CSS`, `HTML`) can be also served to the web application in order to extend the user experience of `Reactivity`.
+
+The microservice can be deployed as a set of instances where messages sent by `Kafka` will be balanced.
 This means that all instances must be part of the same consumer group to make sure only one of them will be notified.
 In fact, we don't want to persist the same event and send the same notification twice.
 
@@ -253,15 +265,3 @@ image:http://kafka.apache.org/images/consumer-groups.png[]
 
 The web application consumes `SSE` streams from the back-end.
 It also pushes new messages to the `Kafka` service to be validated asynchronously by `Reactivity`.
-
-=== Extensions
-
-Extensions are playing the role of additional API.
-Recommended technology for their implementation is `Spring Boot` but it's not mandatory.
-However, an extension must follow the standards defined by `Reactivity` architecture:
-
-* A micro service that registers to `ZooKeeper`
-* Consumes data through `Kafka` connectors
-* Persist data to `Couchbase` and send notification through `Kafka`
-
-Additional statics (`JS`, `CSS`, `HTML`) can be also served to the web application in order to extend the user experience of `Reactivity`.
