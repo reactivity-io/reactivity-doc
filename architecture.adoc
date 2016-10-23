@@ -170,6 +170,12 @@ This is why our primary choice goes for `Couchbase` server to store the data of 
 
 Since a `JSON` document data model can be easily extended by addibg more properties to it, `Couchbase` also offers the opportunity to dynamically add extensions to `Reactivity`.
 
+=== Traefik as reverse proxy
+
+Front-end architecture will balance the requests coming from the web clients to different instances.
+This will be achieved by https://traefik.io[Traefik], a moden reverse proxy dealing with microservices architecture.
+A `ZooKeeper` support is provided out of the box, allowing to detect all available back-ends and remove them in case of failure.
+
 == Components architecture view
 
 === Overview
@@ -265,3 +271,17 @@ image:http://kafka.apache.org/images/consumer-groups.png[]
 
 The web application consumes `SSE` streams from the back-end.
 It also pushes new messages to the `Kafka` service to be validated asynchronously by `Reactivity`.
+
+=== Note on load balancing
+
+In this architecture, `Traefik` is in charge of balancing requests coming from web application to:
+
+* `Kafka` cluster where nodes expose a REST API to send message
+* `Spring Boot` applications that serve statics (`JS`, `CSS`, `HTML`) including extensions and also `SSE` connections
+
+`Traefik` will use `ZooKeeper` to retrieve the correct backends instances.
+Other components will retrieve their dependent services also via `ZooKeeper` but a client load balancing approach will be used:
+
+* `Spring Boot` applications will balance requests to `Couchbase` thanks to it's client driver
+* `Spring Boot` applications will naturally balance messages to `Kafka` since the cluster has a different leader for each partition
+* `Kafka` will balance messages to `Spring Boot` consumers according to server list retrieved from `ZooKeeper`
