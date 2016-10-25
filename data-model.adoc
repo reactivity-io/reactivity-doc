@@ -14,12 +14,12 @@ This allows `Reactivity` to understand what to do with the data.
 Therefore, any producer must use a particular data structure in their `JSON` document to wrap their data:
 
     {
-		"version" : "The module version",
-		"event" : "The event type here",
-		"data" : "The data here",
-		"timestamp" : "The event timestamp",
-		"id" : "The event ID"
-	}
+		    "version" : "The module version",
+		    "event" : "The event type here",
+		    "data" : "The data here",
+		    "timestamp" : "The event timestamp",
+		    "id" : "The event ID"
+    }
 	
 === version
 
@@ -76,15 +76,121 @@ The extension is free to manage specific properties at any level of the message.
 For instance:
 
     {
-		"version" : "The module version",
-		"event" : "The event type here",
-		"data" : {
-			"my-extension-some-property" : "some value"
-		},
-		"timestamp" : "The event timestamp",
-		"id" : "The event ID",
-		"my-extension-some-property" : "some value"		
-	}
+        "version" : "The module version", 
+        "event" : "The event type here",
+        "data" : {
+            "my-extension-some-property" : "some value"
+        },
+        "timestamp" : "The event timestamp",
+        "id" : "The event ID",
+        "my-extension-some-property" : "some value"		
+    }
 
 It's strongly recommended that an extension does not add specific properties in a different place than what is defined in the above example.
 Making assertion on the `data` field structure to add properties in a deeper path is possible but it would strongly couple the core with the extension, which would potentially lead to lots of regressions after a new release.
+
+== Built-in data types and associated events
+
+The following section describes the possible values for `data` and associated `event` attribute in a message provided by the core of `Reactivity`.
+
+=== User
+
+All messages related to the `User` data type are published to the `user` topic.
+
+==== event = 'CREATE'
+
+The `CREATE` event for a `User` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'READ'
+
+The `READ` event for a `User` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'UPDATE'
+
+The `UPDATE` event for a `User` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'DELETE'
+
+The `DELETE` event for a `User` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+=== Organization
+
+All messages related to the `Organization` data type are published to the `organization` topic.
+
+==== event = 'CREATE'
+
+The `CREATE` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'READ'
+
+The `READ` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'UPDATE'
+
+The `UPDATE` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'DELETE'
+
+The `DELETE` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'READ_VIEW'
+
+The `READ_VIEW` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'ADD_VIEW'
+
+The `ADD_VIEW` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'REMOVE_VIEW'
+
+The `REMOVE_VIEW` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+=== Artifact
+
+All messages related to the `Artifact` data type are published to the `artifact` topic.
+
+==== event = 'CREATE'
+
+The `READ` event for an `Artifact` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'READ'
+
+The `READ` event for an `Artifact` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'UPDATE'
+
+The `UPDATE` event for an `Artifact` has a `data` attribute associated to a value that looks like this:
+
+TODO
+
+==== event = 'DELETE'
+
+The `DELETE` event for an `Artifact` has a `data` attribute associated to a value that looks like this:
+
+TODO
