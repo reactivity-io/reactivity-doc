@@ -225,13 +225,90 @@ TODO
 
 The `ADD_VIEW` event for an `Organization` has a `data` attribute associated to a value that looks like this:
 
-TODO
+    {
+        "organization" : "The organization identifier",
+        "name" : "The name of the view", 
+        "period" {
+            "from" : "From when the artifacts are displayed",
+            "to" : "Moment until artifacts are displayed",
+            "category" : "The category providing the timestamp to use"
+        },
+        "filters" : [{
+            "category" : "Filter the artifact with the specified category",
+            "value" : "The value that must equals to the specified category in the filtered artifact"
+        }],
+        "type" : "Type fo the view"
+    }
+
+*organization*
+
+The organization `tag` owning the view.
+	
+*name*
+
+The name of the view is an unique string inside the `Organization`.
+The value is displayed as a summary of the view.
+
+*period*
+
+A complex object describing the period of time covering the displayed informations.
+This object contains the following attributes:
+
+* `from`: The min date of `Artifact`. Must be a timestamp in milliseconds. The value is mandatory.
+* `to`: The max date of `Artifact`. Must be a timestamp in milliseconds if defined. The value can be `undefined`, `null` or `false`. In this case no max date is applied.
+* `category`: The category that will be used to read the timestamp from the artifact. Must be a timestamp in milliseconds if defined. The value can be `undefined`, `null` or `false`. In this case the event timestamp will be used. 
+
+*filters*
+
+Optional filters in addition to the period that are applied on the `Artifact` when selecting the data.
+`filters` value is an array of complex object with two attributes:
+
+* `category`: the category `tag` that must be used to filter the `Artifact`. The value is mandatory.
+* `value`: the particular category label that must be associated to the `Artifact`. The value can be `undefined`, `null` or `false`. In this case any value is accepted since the category exist in the `Artifact`.
+
+*type*
+
+The type of view describes a way to display and store the data.
+The possible values are enumerated by the system.
+`Reactivity` supports out of the box two types:
+
+* `table`: display artifacts in a table with one or two dimensions
+* `timeseries`: display the artifacts distributed over a periode of time inside a chart
+
+Additional attributes when `type = 'table'`.
+
+    {
+        "columns" : "Category enumerating the columns",
+        "rows" : "Category enumerating the rows"
+    }
+
+* `columns`: a category `tag` containing the values displayed in column titles. `Artifact` will be organized vertically according to the value of this category. This value is mandatory.
+* `rows`: a category `tag` containing the values displayed in row titles. `Artifact` will be organized horizontally according to the value of this category. The value can be `undefined`, `null` or `false`. In this case the table has only one dimension.
+	
+Additional attributes when `type = 'timeseries'`.
+
+    {
+        "unit" : "The time unit defining the group level of the time series",
+        "category" : "The category used to count artifacts"
+        "preferences" : {
+            "colors" : [{
+            "label" : "The category label that should be displayed with a particular color",
+                "value" : "The color to apply for the specified category label"
+            }],
+            "chart" : "The chat that displays the time series"
+        }
+    }
+
+* `unit`: the time unit that corresponds to the group level of the time series from year to minute. This field is mandatory. Possible values are `year`, `year/month`, `year/month/day`, `year/month/day/hour`, `year/month/day/hour/minute`.
+* `category`: the category `tag` defining how `Artifact` must be grouped. This field is mandatory.
+* `preferences.color`: an array where each object describes the preferred color to represent a category. Each object has a `label` attribute for the category label and a `value` for the color to apply.
+* `prefereces.chart`: a string indicated the chart displaying the data. The possible values are managed by the user interface.
 
 ==== event = 'REMOVE_VIEW'
 
-The `REMOVE_VIEW` event for an `Organization` has a `data` attribute associated to a value that looks like this:
-
-TODO
+The `REMOVE_VIEW` event for an `Organization` has a `data` attribute associated to an empty value.
+In fact, the event simply indicates that a view identified by the event `tag` has been removed.
+Therefore, no more information than the `tag` is required to identify the removed view.
 
 === Artifact
 
