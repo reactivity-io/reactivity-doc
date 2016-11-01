@@ -279,15 +279,9 @@ An array defined only if members have changed and containing complex objects wit
 * `id`: the `User` ID corresponding to the member.
 * `role`: the role of the member inside the `Organization`. Only defiened when the event is `ADD_MEMBER`.
 
-==== event = 'READ_VIEW'
+==== event = 'ADD_VIEW' OR event = 'READ_VIEW'
 
-The `READ_VIEW` event for an `Organization` has a `data` attribute associated to a value that looks like this:
-
-TODO
-
-==== event = 'ADD_VIEW'
-
-The `ADD_VIEW` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+The `ADD_VIEW` and `READ_VIEW` events for an `Organization` have a `data` attribute associated to a value that looks like this:
 
     {
         "organization" : "The organization identifier",
@@ -295,7 +289,7 @@ The `ADD_VIEW` event for an `Organization` has a `data` attribute associated to 
         "period" {
             "from" : "From when the artifacts are displayed",
             "to" : "Moment until artifacts are displayed",
-            "category" : "The category providing the timestamp to use"
+            "category" : "The category id providing the timestamp to use"
         },
         "filters" : [{
             "category" : "Filter the artifact with the specified category",
@@ -304,9 +298,13 @@ The `ADD_VIEW` event for an `Organization` has a `data` attribute associated to 
         "type" : "Type fo the view"
     }
 
+`ADD_VIEW` event is sent by a producer when a view is created.
+`READ_VIEW` event is sent to a consumer when this consumer is connected to an `Organization`.
+Only views related to the `Organization` are sent.
+	
 *organization*
 
-The organization `tag` owning the view.
+The organization `id` owning the view.
 	
 *name*
 
@@ -320,14 +318,14 @@ This object contains the following attributes:
 
 * `from`: The min date of `Artifact`. Must be a timestamp in milliseconds. The value is mandatory.
 * `to`: The max date of `Artifact`. Must be a timestamp in milliseconds if defined. The value can be `undefined`, `null` or `false`. In this case no max date is applied.
-* `category`: The category that will be used to read the timestamp from the artifact. Must be a timestamp in milliseconds if defined. The value can be `undefined`, `null` or `false`. In this case the event timestamp will be used. 
+* `category`: The category `id` that will be used to read the timestamp from the artifact. Must be a timestamp in milliseconds if defined. The value can be `undefined`, `null` or `false`. In this case the event timestamp will be used. 
 
 *filters*
 
 Optional filters in addition to the period that are applied on the `Artifact` when selecting the data.
 `filters` value is an array of complex object with two attributes:
 
-* `category`: the category `tag` that must be used to filter the `Artifact`. The value is mandatory.
+* `category`: the category `id` that must be used to filter the `Artifact`. The value is mandatory.
 * `value`: the particular category label that must be associated to the `Artifact`. The value can be `undefined`, `null` or `false`. In this case any value is accepted since the category exist in the `Artifact`.
 
 *type*
@@ -346,8 +344,8 @@ Additional attributes when `type = 'table'`.
         "rows" : "Category enumerating the rows"
     }
 
-* `columns`: a category `tag` containing the values displayed in column titles. `Artifact` will be organized vertically according to the value of this category. This value is mandatory.
-* `rows`: a category `tag` containing the values displayed in row titles. `Artifact` will be organized horizontally according to the value of this category. The value can be `undefined`, `null` or `false`. In this case the table has only one dimension.
+* `columns`: a category `id` containing the values displayed in column titles. `Artifact` will be organized vertically according to the value of this category. This value is mandatory.
+* `rows`: a category `id` containing the values displayed in row titles. `Artifact` will be organized horizontally according to the value of this category. The value can be `undefined`, `null` or `false`. In this case the table has only one dimension.
 	
 Additional attributes when `type = 'timeseries'`.
 
@@ -364,15 +362,15 @@ Additional attributes when `type = 'timeseries'`.
     }
 
 * `unit`: the time unit that corresponds to the group level of the time series from year to minute. This field is mandatory. Possible values are `year`, `year/month`, `year/month/day`, `year/month/day/hour`, `year/month/day/hour/minute`.
-* `category`: the category `tag` defining how `Artifact` must be grouped. This field is mandatory.
+* `category`: the category `id` defining how `Artifact` must be grouped. This field is mandatory.
 * `preferences.color`: an array where each object describes the preferred color to represent a category. Each object has a `label` attribute for the category label and a `value` for the color to apply.
 * `prefereces.chart`: a string indicated the chart displaying the data. The possible values are managed by the user interface.
 
 ==== event = 'REMOVE_VIEW'
 
 The `REMOVE_VIEW` event for an `Organization` has a `data` attribute associated to an empty value.
-In fact, the event simply indicates that a view identified by the event `tag` has been removed.
-Therefore, no more information than the `tag` is required to identify the removed view.
+In fact, the event simply indicates that a view identified by the event `id` has been removed.
+Therefore, no more information than the `id` is required to identify the removed view.
 
 === Artifact
 
