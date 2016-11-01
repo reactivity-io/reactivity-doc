@@ -33,7 +33,7 @@ This offers filtering and grouping capabilities.
 
 * User: the `user category` is an artifact's field optionally filled that is composed of the users associated to the current selected organization.
 * Status: a `status category` is an artifact's field optionnally filled with `TODO`, `WIP` or `DONE` value.
-* Interval: an `interval` allows to group the activity by `day`, `week` or `month`. This `category` can't be associated to an artifact but allows a `table view` to compute its `date`, as described in the `Table` section.
+* Interval: an `interval` allows to group the activity by `day`, `week`, `month`, `hour` or `minute`. This `category` can't be associated to an artifact but allows a `table view` to compute its `date`, as described in the `Table` section.
 
 Following rules are defined for the `categories`:
 
