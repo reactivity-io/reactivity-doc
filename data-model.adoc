@@ -195,25 +195,89 @@ All messages related to the `Organization` data type are published to the `organ
 
 The `CREATE` event for an `Organization` has a `data` attribute associated to a value that looks like this:
 
-TODO
+    {
+        "name" : "The name of the organization",
+	"picture" : "The picture of the organization",
+        "members" : [{
+			"id" : "The ID of the organization member",
+			"role" : "The role of the member inside the organization"
+		}]
+    }
 
-==== event = 'READ'
+This event is sent through this topic by producer when a new `Organization` is created.
+	
+*name*
+	
+* A string corresponding to the `Organization` name.
+* Mandatory attribute.
+* Must be unique.
+	
+*picture*
 
-The `READ` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+* A `base64` string corresponding to the `Organization` picture.
+* Optional attribute.
+	
+*members*
 
-TODO
+An array containing complex objects with two mandatory fields:
 
-==== event = 'UPDATE'
+* `id`: the `User` ID corresponding to the member.
+* `role`: the role of the member inside the `Organization`.
 
-The `UPDATE` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+==== event = 'READ' OR event = 'UPDATE'
 
-TODO
+The `READ` and `UPDATE` events for an `Organization` have a `data` attribute associated to a value that looks like this:
+
+    {
+        "name" : "The name of the organization",
+        "picture" : "The picture of the organization"
+    }
+
+This events are sent when a consumer is reading the `Organization` associated to the current `User`. 
+	
+*name*
+	
+A string corresponding to the `Organization` name. Mandatory attribute.
+	
+*picture*
+
+A `base64` string corresponding to the `Organization` picture. Optional attribute.
 
 ==== event = 'DELETE'
 
-The `DELETE` event for an `Organization` has a `data` attribute associated to a value that looks like this:
+The `DELETE` event for an `Organization` has a `data` attribute associated to an empty value.
+In fact, the event simply indicates that an `Organization` identified by the event `id` has been deleted.
+Therefore, no more information than the `id` is required to identify the removed `Organization`.
 
-TODO
+==== event = 'ADD_MEMBER' OR 'REMOVE_MEMBER'
+
+The `ADD_MEMBER` and 'REMOVE_MEMBER' events for an `Organization` has a `data` attribute associated to a value that looks like this:
+
+    {
+        "organization" : "The organization ID",
+        "members" : [{
+            "id" : "The ID of the organization member",
+            "role" : "The role of the member inside the organization (only when adding a member)"
+        ]]
+    }
+
+Those events when sent when a consumer is connected to an `Organization`.
+Only members of that `Organization` are sent.
+	
+*name*
+	
+A string corresponding to the `Organization` name. Defined only if value has changed.
+	
+*picture*
+
+A `base64` string corresponding to the `Organization` picture. Defined only if value has changed.
+	
+*members*
+
+An array defined only if members have changed and containing complex objects with two mandatory fields:
+
+* `id`: the `User` ID corresponding to the member.
+* `role`: the role of the member inside the `Organization`. Only defiened when the event is `ADD_MEMBER`.
 
 ==== event = 'READ_VIEW'
 
