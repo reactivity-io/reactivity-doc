@@ -163,29 +163,42 @@ The following section describes the possible values for `data` and associated `e
 
 All messages related to the `User` data type are published to the `user` topic.
 
-==== event = 'CREATE'
+==== event = 'CREATE' OR event = 'READ' OR event = 'UPDATE'
 
-The `CREATE` event for a `User` has a `data` attribute associated to a value that looks like this:
+The `CREATE`, `READ` and `UPDATE` events for a `User` has a `data` attribute associated to a value that looks like this:
 
-TODO
+    {
+        "email" : "The user email address", 
+        "firstname" : "The user first name",
+        "lastname" : "The user last name",
+        "picture" : "The picture of user profile"
+    }
 
-==== event = 'READ'
+`READ` and `UPDATE` events are sent for a given `User` only to the consumers connected to an `Organization` that registers this `User` as a member.
+	
+*email*
 
-The `READ` event for a `User` has a `data` attribute associated to a value that looks like this:
+A string corresponding to the user email. Mandatory attribute.
+	
+*firstname*
 
-TODO
+A string corresponding to the user first name. Optional attribute.
 
-==== event = 'UPDATE'
+*lastname*
 
-The `UPDATE` event for a `User` has a `data` attribute associated to a value that looks like this:
+A string corresponding to the user last name. Optional attribute.
+	
+*picture*
 
-TODO
+A `base64` string corresponding to the user picture. Optional attribute.
 
 ==== event = 'DELETE'
 
-The `DELETE` event for a `User` has a `data` attribute associated to a value that looks like this:
+The `DELETE` event for a `User` has a `data` attribute associated to an empty value.
+In fact, the event simply indicates that a `User` identified by the event `id` has been removed.
+Therefore, no more information than the `id` is required to identify the removed view.
 
-TODO
+This event is sent for a given `User` only to the consumers connected to an `Organization` that registers this `User` as a member.
 
 === Organization
 
@@ -197,11 +210,11 @@ The `CREATE` event for an `Organization` has a `data` attribute associated to a 
 
     {
         "name" : "The name of the organization",
-	"picture" : "The picture of the organization",
+        "picture" : "The picture of the organization",
         "members" : [{
-			"id" : "The ID of the organization member",
-			"role" : "The role of the member inside the organization"
-		}]
+                "id" : "The ID of the organization member",
+                "role" : "The role of the member inside the organization"
+        }]
     }
 
 This event is sent through this topic by producer when a new `Organization` is created.
@@ -249,35 +262,100 @@ The `DELETE` event for an `Organization` has a `data` attribute associated to an
 In fact, the event simply indicates that an `Organization` identified by the event `id` has been deleted.
 Therefore, no more information than the `id` is required to identify the removed `Organization`.
 
-==== event = 'ADD_MEMBER' OR 'REMOVE_MEMBER'
+==== event = 'ADD_CATEGORY' OR event = 'READ_CATEGORY' OR event = 'UPDATE_CATEGORY'
 
-The `ADD_MEMBER` and 'REMOVE_MEMBER' events for an `Organization` has a `data` attribute associated to a value that looks like this:
+The `ADD_CATEGORY`, `READ_CATEGORY` and `UPDATE_CATEGORY` events for an `Organization` have a `data` attribute associated to a value that looks like this:
+
+    {
+        "organization": "The organization ID"
+        "name" : "The name of the category"
+        "picture" : "The picture of item category"
+    }
+
+`Reactivity` provides `User` and `Status` categories out of the box.
+	
+*organization*
+
+* The `id` of the `Organization` associated to the category.
+* Mandatory attribute.
+
+*name*
+
+* A string representing the name of the category.
+* Mandatory attribute.
+	
+*picture*
+
+* A `base64` string corresponding to the category.
+* Optional attribute.
+
+==== event = 'REMOVE_CATEGORY'
+
+The `REMOVE_CATEGORY` event for an `Organization` has a `data` attribute associated to an empty value.
+In fact, the event simply indicates that a category identified by the event `id` has been removed.
+Therefore, no more information than the `id` is required to identify the removed category.
+
+==== event = 'ADD_CATEGORY_ITEM' OR event = 'READ_CATEGORY_ITEM' OR event = 'UPDATE_CATEGORY_ITEM'
+
+The `ADD_CATEGORY_ITEM`, `READ_CATEGORY_CATEGORY` and `UPDATE_CATEGORY_ITEM` events for an `Organization` have a `data` attribute associated to a value that looks like this:
+
+    {
+	"category": "The category ID"
+        "name" : "The name of the item"
+        "picture" : "The picture of the item"
+    }
+
+`Reactivity` provides the following values for the built-in categories:
+
+* `User`: all the current `Organization` members with their `id` as name and the picture if any
+* `Status`: `TODO`, `WIP` and `DONE` values with no picture
+
+*category*
+
+* The `id` of the category associated to the item.
+* Mandatory attribute.
+
+*name*
+
+* A string attribute the name of the item.
+* Mandatory attribute.
+
+*picture*
+
+* A `base64` string corresponding to the item.
+* Optional attribute.
+
+==== event = 'REMOVE_CATEGORY_ITEM' 
+
+The `REMOVE_CATEGORY_ITEM` event for an `Organization` has a `data` attribute associated to an empty value.
+In fact, the event simply indicates that an item identified by the event `id` has been removed.
+Therefore, no more information than the `id` is required to identify the removed item.
+
+==== event = 'ADD_MEMBER' OR event = 'REMOVE_MEMBER' OR event = 'UPDATE_MEMBER'
+
+The `ADD_MEMBER`, `REMOVE_MEMBER`, `UPDATE_MEMBER` events for an `Organization` have a `data` attribute associated to a value that looks like this:
 
     {
         "organization" : "The organization ID",
         "members" : [{
             "id" : "The ID of the organization member",
-            "role" : "The role of the member inside the organization (only when adding a member)"
-        ]]
+            "role" : "The role of the member inside the organization (only when adding or updating a member)"
+        }]
     }
 
-Those events when sent when a consumer is connected to an `Organization`.
+Those events are sent when a consumer is connected to an `Organization`.
 Only members of that `Organization` are sent.
 	
 *name*
 	
 A string corresponding to the `Organization` name. Defined only if value has changed.
 	
-*picture*
-
-A `base64` string corresponding to the `Organization` picture. Defined only if value has changed.
-	
 *members*
 
 An array defined only if members have changed and containing complex objects with two mandatory fields:
 
 * `id`: the `User` ID corresponding to the member.
-* `role`: the role of the member inside the `Organization`. Only defiened when the event is `ADD_MEMBER`.
+* `role`: the role of the member inside the `Organization`. Only defined when the event is `ADD_MEMBER` or `UPDATE_MEMBER`.
 
 ==== event = 'ADD_VIEW' OR event = 'READ_VIEW'
 
@@ -340,8 +418,8 @@ The possible values are enumerated by the system.
 Additional attributes when `type = 'table'`.
 
     {
-        "columns" : "Category enumerating the columns",
-        "rows" : "Category enumerating the rows"
+        "columns" : "Category id enumerating the columns",
+        "rows" : "Category id enumerating the rows"
     }
 
 * `columns`: a category `id` containing the values displayed in column titles. `Artifact` will be organized vertically according to the value of this category. This value is mandatory.
@@ -351,7 +429,7 @@ Additional attributes when `type = 'timeseries'`.
 
     {
         "unit" : "The time unit defining the group level of the time series",
-        "category" : "The category used to count artifacts"
+        "category" : "The category id used to count artifacts"
         "preferences" : {
             "colors" : [{
             "label" : "The category label that should be displayed with a particular color",
