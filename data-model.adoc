@@ -454,26 +454,31 @@ Therefore, no more information than the `id` is required to identify the removed
 
 All messages related to the `Artifact` data type are published to the `artifact` topic.
 
-==== event = 'CREATE'
+==== event = 'CREATE' OR event = 'READ' OR event = 'UPDATE'
 
-The `READ` event for an `Artifact` has a `data` attribute associated to a value that looks like this:
+The `CREATE`, `READ` and `UPDATE` events for an `Artifact` have a `data` attribute associated to a value that looks like this:
 
-TODO
+    {
+        "views" : "The id of the different views this artifacts belongs to",
+        "categories" : {
+            "A free category key" : "A free category value"
+        }
+    }
 
-==== event = 'READ'
+* `views`: an array containing the `id` of the different views containing this `Artifact`. 
+* `categories`: a free set of key/value that describes the information defined by the user interface. `Reactivity` expects the following categories by default:
+** A key called `user` associated to an `id` allowing to associate a `User` to an `Artifact`
+** A key called `status` associated to `TODO`, `WIP` or `DONE` (the default items for the `Status` category) allowing to give a `status` to an `Artifact`
 
-The `READ` event for an `Artifact` has a `data` attribute associated to a value that looks like this:
+`READ` and `UPDATE` events are sent for a given `Artifact` only to the consumers connected to an `Organization` that registers the views containing this `Artifact`.
 
-TODO
+When the `Artifact` belongs to a view of type `timeseries` the categories are actually used to specify time series information:
 
-==== event = 'UPDATE'
-
-The `UPDATE` event for an `Artifact` has a `data` attribute associated to a value that looks like this:
-
-TODO
+* A key corresponding to the grouping category `id` associated to a value indicating the count result
+* A key called `timestamp` corresponding to a time in milliseconds of the newest counted `Artifact`
 
 ==== event = 'DELETE'
 
-The `DELETE` event for an `Artifact` has a `data` attribute associated to a value that looks like this:
-
-TODO
+The `DELETE` event for an `Artifact` has a `data` attribute associated to an empty value.
+In fact, the event simply indicates that an `Artifact` identified by the event `id` has been removed.
+Therefore, no more information than the `id` is required to identify the removed `Artifact`.
