@@ -144,6 +144,11 @@ This projects answer the need to documentation in an easy maintainance way.
 http://projects.spring.io/spring-security[Spring Security] project provides a very large of techniques that allows to secure `Reactivity`.
 This framework will be leverage on the consumers and producers that need to deal with user authentication and authorizations.
 
+===== Hazelcast
+
+https://hazelcast.com[Hazelcast] allows `Spring Security` manage a distributed session across several `JVM`, allowing to scale the micro services without any issue at authentication level.
+`Hazelcast` also has the advantage of being a lighweight solution directly embedded in the `Spring Boot` application and does not require to be launched as an additional standalone component.
+
 ==== Spring Boot
 
 http://projects.spring.io/spring-boot[Spring Boot] allows to quickly build a standalone component, easy to package in a uber JAR that make it easy to deploy and run.
