@@ -82,9 +82,30 @@ Selection process must have a particular attention to the license to avoid paten
 === Java 8 as base line version
 
 The latest version of `Java` is the version 8.
-This version will be used in the core of `Reactivity` as it's well maitained by `Oracle`, provides new features (especially around the `Stream` API) and is required by different technologies selected in the next section.
+This version will be used in the core of `Reactivity` as it's well maintained by `Oracle`, provides new features (especially around the `Stream` API) and is required by different technologies selected in the next section.
 
 The goal of `Reactivity` is also to take advantage from the features introduced in next `Java` releases and be upgraded to `Java` 9 when available.
+
+=== Progressive Web App
+
+Progressive web apps are a set of technologies and concepts designed to give the best possible user experience, whatever the device.
+The main concepts will be implement for the `Reactivity` web-application, they are :
+
+* *Instant loading*: Thanks to Service Workers, which manage the absence of network; the user must always have something displayed on the screen
+* *Loading performance*: The app must load fast
+* *Access on the homescreen*: By defining a JSON-based manifest
+* *Notifications*: which allow to update the application for the user (even in the absence of a network, thanks to Service Worker)
+* *Responsive design*: So that the application is adapted to any device
+* *Speed*: 60 fps everywhere
+* *Security*: https everywhere
+
+In order to leverage those concepts, `Reactivity` will use Polymer, in its https://www.polymer-project.org/2.0/docs/about_20[2.0 version] (preview for the moment). Polymer is based on the web-components and provides some.
+There are several advantages to relying on web components, and especially two that have a definite interest compared to Reactivity:
+
+* each component is insulated, and possibly developed in the desired technology
+* it is easy to contribute to the project thereafter, given that we provide a basis, it will be easy to iterate over
+
+Moreover, as `Reactivity` must load fast, the https://webpack.github.io/docs/code-splitting.html[code-splitting pattern], and the https://www.polymer-project.org/1.0/toolbox/server[PRPL pattern] are two solutions.
 
 == Framework and platforms
 
