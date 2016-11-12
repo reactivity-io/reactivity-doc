@@ -44,18 +44,24 @@ Following rules are defined for the `categories`:
 
 A `view` is a representation of the activity produced over a period of time by the `users` inside an `organization`.
 
-This fundamental object defines from when the activity of the `organization` will be viewed.
-A `view` can have an optional `end date`.
-If no `end date` is defined, the period covers all the activity newer than the `start date`.
+This fundamental object defines from when the activity of the `organization` will be viewed:
+
+* A `start date` can be explictely defined. In that case, a `end date` can be optionally specified. If no `end date` is defined, the period covers all the activity newer than the `start date`.
+* If no `start date` is defined, the *n* last `artifacts` are displayed.
 
 Optionally the view can be also associated to a category that will be used to filter more the activity to display.
-Artifact created in that view will be automatically associated to that category.
+`Artifact` created in that view will be automatically associated to that category.
 
 Many `views` can be defined inside an `organization`.
 A `view` is also typed with the structure of data that is ready to consume.
 Those structures have a immutable definition and are enumerated by `Reactivity` for all `organizations`.
 
 A `view` can be marked as private by the `user` who creates it in order to not make it visible by the others.
+
+=== List
+
+A `list` is a basic data structure that types the view that displays the `artifacts` on several lines.
+A line can be configured to display some categories and hide some other information.
 
 === Table
 

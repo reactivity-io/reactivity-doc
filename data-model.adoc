@@ -410,8 +410,9 @@ Optional filters in addition to the period that are applied on the `Artifact` wh
 
 The type of view describes a way to display and store the data.
 The possible values are enumerated by the system.
-`Reactivity` supports out of the box two types:
+`Reactivity` supports out of the box three types:
 
+* `list`: display artifacts in a list with one line per item
 * `table`: display artifacts in a table with one or two dimensions
 * `timeseries`: display the artifacts distributed over a periode of time inside a chart
 
