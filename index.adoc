@@ -15,3 +15,6 @@ include::data-model.adoc[]
 
 include::streaming-client.adoc[]
 
+= Installation
+
+include::install.adoc[]
