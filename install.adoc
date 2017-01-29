@@ -84,3 +84,61 @@ The HTTP server is also configured to redirect traffic from http://localhost:300
 This allows the frontend web application to naturally consume the backend application previously started.
 
 You can refer to the `README.md` inside the `front` directory for more details.
+
+== CloudFoundry
+
+This section gives a step-by-step guide to install `Reactivity` on `CloudFoundry`.
+
+The guide focuses on a deployment from your local environment.
+Those steps can be automated for you regarding the continuous integration system you use.
+For instance refer to https://docs.travis-ci.com/user/deployment/cloudfoundry[this documentation] for a deployment from `travis`.
+
+=== Prerequisites
+
+Before installing the specific components related to `Reactivity`, make sure you have installed the following tools:
+
+* A recent version of https://git-scm.com/downloads[GIT client]
+* A recent version of http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java 8]
+* The latest version of https://maven.apache.org[Maven 3]
+* The latest LTS of https://nodejs.org/en[NodeJS] with a recent version of `npm`
+* A recent version of `CloudFoundry` https://docs.cloudfoundry.org/cf-cli/install-go-cli.html[CLI].
+
+=== Clone the repository
+
+Core components are hosted in https://github.com/reactivity-io/reactivity[this repository].
+You can https://help.github.com/articles/fork-a-repo[fork it] and then https://help.github.com/articles/cloning-a-repository[clone it].
+Identify the branch of the tag corresponding to the version of the code that you want to deploy and checkout it.
+
+The `reactivity` repository is currently organized with the following structure:
+
+* A `core` directory containing the backend APIs packaged with `maven`.
+* A `front` directory containing the frontend web application packaged with `NodeJs`.
+
+=== Prepare the manifest.yml
+
+You have a `manifest.yml` file that you can customize according to your need.
+You should have a particular attention to the routes that are configured for each module.
+Adapt them according to the domains registered inside your `CloudFoundry` instance.
+
+=== Package the application
+
+First, move to the `core/java-lib` directory and run `mvn clean install -Dmaven.test.skip`.
+Then, move to the `core/broadcaster` directory and run the same command.
+This will generate a `JAR` file in the `core/broadcaster/target` directory to be deployed.
+
+Finally, move to the `front` directory and run `npm run dist`.
+This will package the static files to be deployed in a `front/dist` directory.
+
+Now we can upload the artifacts to `CloudFoundry`.
+Use `cf login` to identify yourself with the remote server (see more details https://docs.cloudfoundry.org/cf-cli/getting-started.html[here]).
+
+Then push the apps with `cf push` from the root directory.
+This will use the `manifest.yml` and uploads the two artifacts.
+
+=== Configure environment variables
+
+The backend will try to connect to `Couchbase` when it starts.
+You can define in `CloudFoundry` the following environment variables to specify the location of your server.
+
+* `REACTIVITY_COUCHBASE_NODES`: a comma separated list of hosts
+* `REACTIVITY_COUCHBASE_BUCKET`: the bucket name where data are stored
