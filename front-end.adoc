@@ -1,0 +1,47 @@
+== Front end
+
+=== Build
+
+The build process comes in several part:
+
+* clean /front/dist/ repository
+* process all the sources
+* build appropriate service worker to suit our needs
+
+The build config is defined on top of `gulpfile.js`
+
+Current configuration generates both a bundled and unbundled version. A bundled version will be vulcanized and sharded.
+An unbundled version will not have its files combined at all. Both version should still use fragments.
+
+
+==== Polymer build
+
+We use https://github.com/Polymer/polymer-build[polymer-build] to build our project, allowing for more options than the
+basic polymer-cli:
+
+* run the source code through custom optimizers/processors before, after, or during the build
+* hook additional work into any part of the build process
+
+The configuration of the polymer build can be found in
+https://www.polymer-project.org/1.0/docs/tools/polymer-cli#build[polymer.json] at the root of the project.
+
+`gulp_tasks/polymer-build.task.js` extend the basic behaviour of polymer-build and gives us helper to manipulate the
+polymer components.
+
+`gulp_tasks/build.task.js` allows us to pipe additional process to the build (minimify, es6 compilation, ...)
+
+`gulp_tasks/compile.task.js` will be used for es6 transpilation.
+
+
+==== Service worker
+
+Once we have our build ready, we use https://github.com/GoogleChrome/sw-precache[sw-precache] to scan the resources
+available and generate a cache mechanism, following the https://www.polymer-project.org/1.0/toolbox/server[PRPL pattern].
+
+https://github.com/GoogleChrome/sw-toolbox[sw-toolbox] is made available and extends sw-precache, by handling runtime
+requests
+
+Both of these service worker can be configured through the config var at the top of `gulpfile.js`
+
+You can install your own service worker using the importScripts parameter of the swPrecacheConfig
+
