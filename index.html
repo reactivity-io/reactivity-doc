@@ -698,8 +698,8 @@ The result of that transformation allows the <code>view</code> to let the <code>
 <div class="sect2">
 <h3 id="_based_on_reactive_streams">Based on reactive streams</h3>
 <div class="paragraph">
-<p><code>Reactivity</code> architecture allows the system to face an unpredictible load of data when the users, the data sources or even the resources of some parties inside the information system scale.
-This is why all the core <a href="http://www.reactive-streams.org">architecture</a> heavily uses the reactive streams where each service acts as a consumer and/or as a producer, emphasing an event-driven model in all layers.</p>
+<p><code>Reactivity</code> architecture allows the system to face an unpredictable load of data when the users, the data sources or even the resources of some parties inside the information system scale.
+This is why all the core <a href="http://www.reactive-streams.org">architecture</a> heavily uses the reactive streams where each service acts as a consumer and/or as a producer, emphasizing an event-driven model in all layers.</p>
 </div>
 </div>
 <div class="sect2">
@@ -730,7 +730,7 @@ This means also that if a consumer fails to acknowledge a message consumption, i
 This means that a stream can be composed of different streams.</p>
 </div>
 <div class="paragraph">
-<p>There is no reason to exclude some system interractions from the asynchronous messaging model.
+<p>There is no reason to exclude some system interactions from the asynchronous messaging model.
 Even a click from a user can be considered as a stream source.</p>
 </div>
 <div class="paragraph">
@@ -769,7 +769,7 @@ Message streaming should be used as much as possible to replicate a data from sc
 <h3 id="_extensible">Extensible</h3>
 <div class="paragraph">
 <p><code>Reactivity</code> has a core concept but producing and consuming data can take different forms.
-This is why <code>Reactivity</code> must be extensible by providing a pluggable API allowing extensions to register to the system.
+This is why <code>Reactivity</code> must be extensible by providing a plugable API allowing extensions to register to the system.
 An extension can cover different capabilities.</p>
 </div>
 <div class="sect3">
@@ -783,9 +783,9 @@ The extension can be notified by changes in <code>Reactivity</code> in order to 
 <div class="sect3">
 <h4 id="_artifact_extension">Artifact extension</h4>
 <div class="paragraph">
-<p>An extension defines additional build-it functionalities allowing to manage more information and interractions inside an <code>Artifact</code>.
+<p>An extension defines additional build-it functionalities allowing to manage more information and interactions inside an <code>Artifact</code>.
 This means that the original data model inside an <code>Artifact</code> can be extended by each extension.
-This also means that specific actions defined by the extensions can be trigerred when user interracts with that data.
+This also means that specific actions defined by the extensions can be trigerred when user interacts with that data.
 Most of the time, an <code>Artifact</code> extension will embed data synchronization capabilities.</p>
 </div>
 </div>
@@ -951,7 +951,7 @@ This project will help consumers and producers to connect with <code>Kafka</code
 <div class="paragraph">
 <p><a href="https://projects.spring.io/spring-restdocs">Spring REST Docs</a> provides a very handy way to document and test the APIs in a single activity.
 It extends the integration testing API of <code>Spring</code> to build <code>AsciiDoc</code> files regarding the assertions performed on the services that are test.
-This projects answer the need to documentation in an easy maintainance way.</p>
+This projects answer the need to documentation in an easy maintenance way.</p>
 </div>
 </div>
 <div class="sect3">
@@ -964,7 +964,7 @@ This framework will be leverage on the consumers and producers that need to deal
 <h5 id="_hazelcast">Hazelcast</h5>
 <div class="paragraph">
 <p><a href="https://hazelcast.com">Hazelcast</a> allows <code>Spring Security</code> manage a distributed session across several <code>JVM</code>, allowing to scale the micro services without any issue at authentication level.
-<code>Hazelcast</code> also has the advantage of being a lighweight solution directly embedded in the <code>Spring Boot</code> application and does not require to be launched as an additional standalone component.</p>
+<code>Hazelcast</code> also has the advantage of being a lightweight solution directly embedded in the <code>Spring Boot</code> application and does not require to be launched as an additional standalone component.</p>
 </div>
 </div>
 </div>
@@ -1051,36 +1051,36 @@ A <code>ZooKeeper</code> support is provided out of the box, allowing to detect 
 <p>Extensions</p>
 <div class="literalblock">
 <div class="content">
-<pre>++++++++++++++++++++++++++++++               +++++++++++++++++++++++++++++++++
-+                            +      REST     +         Service discovery     +
-+                            +--------------&gt;+-------------------------------+        REST
-+                            +               +             ZooKeeper         +&lt;-----+--------+------+
-+     Streaming Platform     +               +++++++++++++++++++++++++++++++++      |        |      |
-+                            +                                                      |        |      |
-+                            + KAFKA CLIENT ++++++++++++++++++++++++++++++++++      |        |      |
-+                            +&lt;------------&gt;+          Broadcaster           +------+        |      |
-+                            +              +--------------------------------+               |      |
-+----------------------------+              +          Spring Boot           +               |      |
-+           KAFKA            +              ++++++++++++++++++++++++++++++++++               |      |
-++++++++++++++++++++++++++++++   REST            ^        + STATICS +  |                     |      |
-          ^            + API +&lt;-------+          |        +++++++++++  |                     |      |
-          |            +++++++        |      SSE |            ^        |                     |      |
-          |                           |          |            |        |                     |      |
-          |                           |          |            |        |                     |      |
-          |                         ++++++++++++++++   HTTP   |        |  DB DRIVER          |      |
-          |                         +    WebApp    +----------+        +--------------+      |      |
-          |                         +--------------+                                  |      |      |
-          |                         +  JAVASCRIPT  +                                  |      |      |
-          |                         ++++++++++++++++                                  v      |      |
-          |                                                                         +++++++++++++   |
-          |                                                              DB DRIVER  + Database  +   |
-          |                                                            +-----------&gt;+-----------+   |
-          |                                                            |            + Couchbase +   |
-          |              +++++++++++++++++++++++++++++++++++++++++++++++++++++++++  +++++++++++++   |
-          | KAFKA CLIENT + Extensions -&gt; Validation API -&gt; Persistance Component +                  |
-          +-------------&gt;+ ------------------------------------------------------+                  |
-                         +                       Spring Boot                     +------------------+
-                         +++++++++++++++++++++++++++++++++++++++++++++++++++++++++</pre>
+<pre>++++++++++++++++++++++               +++++++++++++++++++++++++++++++++
++                    +      REST     +         Service discovery     +
++                    +--------------&gt;+-------------------------------+        REST
++                    +               +             ZooKeeper         +&lt;-----+--------+------+
++ Streaming Platform +               +++++++++++++++++++++++++++++++++      |        |      |
++                    +                                                      |        |      |
++                    + KAFKA CLIENT ++++++++++++++++++++++++++++++++++      |        |      |
++                    +&lt;------------&gt;+          Broadcaster           +------+        |      |
++                    +              +--------------------------------+               |      |
++--------------------+              +          Spring Boot           +               |      |
++       KAFKA        +              ++++++++++++++++++++++++++++++++++               |      |
+++++++++++++++++++++++   REST            ^        + STATICS +  |                     |      |
+      ^        + API +&lt;-------+          |        +++++++++++  |                     |      |
+      |        +++++++        |      SSE |            ^        |                     |      |
+      |                       |          |            |        |                     |      |
+      |                       |          |            |        |                     |      |
+      |                     ++++++++++++++++   HTTP   |        |  DB DRIVER          |      |
+      |                     +    WebApp    +----------+        +--------------+      |      |
+      |                     +--------------+                                  |      |      |
+      |                     +  JAVASCRIPT  +                                  |      |      |
+      |                     ++++++++++++++++                                  v      |      |
+      |                                                                     +++++++++++++   |
+      |                                                          DB DRIVER  + Database  +   |
+      |                                                        +-----------&gt;+-----------+   |
+      |                                                        |            + Couchbase +   |
+      |  KAFKA   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++  +++++++++++++   |
+      |  CLIENT  + Extensions -&gt; Validation API -&gt; Persistance Component +                  |
+      +---------&gt;+ ------------------------------------------------------+                  |
+                 +                       Spring Boot                     +------------------+
+                 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++</pre>
 </div>
 </div>
 </li>
@@ -2381,7 +2381,7 @@ You can define in <code>CloudFoundry</code> the following environment variables 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-04 15:31:41 UTC
+Last updated 2017-03-04 19:20:44 UTC
 </div>
 </div>
 </body>
