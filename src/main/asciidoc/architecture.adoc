@@ -2,8 +2,8 @@
 
 === Based on reactive streams
 
-`Reactivity` architecture allows the system to face an unpredictible load of data when the users, the data sources or even the resources of some parties inside the information system scale.
-This is why all the core http://www.reactive-streams.org[architecture] heavily uses the reactive streams where each service acts as a consumer and/or as a producer, emphasing an event-driven model in all layers.
+`Reactivity` architecture allows the system to face an unpredictable load of data when the users, the data sources or even the resources of some parties inside the information system scale.
+This is why all the core http://www.reactive-streams.org[architecture] heavily uses the reactive streams where each service acts as a consumer and/or as a producer, emphasizing an event-driven model in all layers.
 
 === Event-driven system
 
@@ -26,7 +26,7 @@ This means also that if a consumer fails to acknowledge a message consumption, i
 Transformation can be also aggregations to satisfy some user views requirements.
 This means that a stream can be composed of different streams.
 
-There is no reason to exclude some system interractions from the asynchronous messaging model.
+There is no reason to exclude some system interactions from the asynchronous messaging model.
 Even a click from a user can be considered as a stream source.
 
 image:https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67[https://github.com/staltz]
@@ -55,7 +55,7 @@ Message streaming should be used as much as possible to replicate a data from sc
 === Extensible
 
 `Reactivity` has a core concept but producing and consuming data can take different forms.
-This is why `Reactivity` must be extensible by providing a pluggable API allowing extensions to register to the system.
+This is why `Reactivity` must be extensible by providing a plugable API allowing extensions to register to the system.
 An extension can cover different capabilities.
 
 ==== Data synchronization
@@ -66,9 +66,9 @@ The extension can be notified by changes in `Reactivity` in order to leverage bi
 
 ==== Artifact extension
 
-An extension defines additional build-it functionalities allowing to manage more information and interractions inside an `Artifact`.
+An extension defines additional build-it functionalities allowing to manage more information and interactions inside an `Artifact`.
 This means that the original data model inside an `Artifact` can be extended by each extension.
-This also means that specific actions defined by the extensions can be trigerred when user interracts with that data.
+This also means that specific actions defined by the extensions can be trigerred when user interacts with that data.
 Most of the time, an `Artifact` extension will embed data synchronization capabilities.  
 
 == Key technologies
@@ -158,7 +158,7 @@ http://projects.spring.io/spring-cloud[Spring Cloud] brings a lot of key compone
 
 https://projects.spring.io/spring-restdocs[Spring REST Docs] provides a very handy way to document and test the APIs in a single activity.
 It extends the integration testing API of `Spring` to build `AsciiDoc` files regarding the assertions performed on the services that are test.
-This projects answer the need to documentation in an easy maintainance way.
+This projects answer the need to documentation in an easy maintenance way.
 
 ==== Spring Security
 
@@ -168,7 +168,7 @@ This framework will be leverage on the consumers and producers that need to deal
 ===== Hazelcast
 
 https://hazelcast.com[Hazelcast] allows `Spring Security` manage a distributed session across several `JVM`, allowing to scale the micro services without any issue at authentication level.
-`Hazelcast` also has the advantage of being a lighweight solution directly embedded in the `Spring Boot` application and does not require to be launched as an additional standalone component.
+`Hazelcast` also has the advantage of being a lightweight solution directly embedded in the `Spring Boot` application and does not require to be launched as an additional standalone component.
 
 ==== Spring Boot
 
@@ -215,36 +215,36 @@ Different components will interract with different roles:
 * Streaming platform
 * Extensions
 
-             ++++++++++++++++++++++++++++++               +++++++++++++++++++++++++++++++++                       
-             +                            +      REST     +         Service discovery     +                       
-             +                            +-------------->+-------------------------------+        REST           
-             +                            +               +             ZooKeeper         +<-----+--------+------+
-             +     Streaming Platform     +               +++++++++++++++++++++++++++++++++      |        |      |
-             +                            +                                                      |        |      |
-             +                            + KAFKA CLIENT ++++++++++++++++++++++++++++++++++      |        |      |
-             +                            +<------------>+          Broadcaster           +------+        |      |
-             +                            +              +--------------------------------+               |      |
-             +----------------------------+              +          Spring Boot           +               |      |
-             +           KAFKA            +              ++++++++++++++++++++++++++++++++++               |      |
-             ++++++++++++++++++++++++++++++   REST            ^        + STATICS +  |                     |      |
-                       ^            + API +<-------+          |        +++++++++++  |                     |      |
-                       |            +++++++        |      SSE |            ^        |                     |      |
-                       |                           |          |            |        |                     |      |
-                       |                           |          |            |        |                     |      |
-                       |                         ++++++++++++++++   HTTP   |        |  DB DRIVER          |      |
-                       |                         +    WebApp    +----------+        +--------------+      |      |
-                       |                         +--------------+                                  |      |      |
-                       |                         +  JAVASCRIPT  +                                  |      |      |
-                       |                         ++++++++++++++++                                  v      |      |
-                       |                                                                         +++++++++++++   |
-                       |                                                              DB DRIVER  + Database  +   |
-                       |                                                            +----------->+-----------+   |
-                       |                                                            |            + Couchbase +   |
-                       |              +++++++++++++++++++++++++++++++++++++++++++++++++++++++++  +++++++++++++   |
-                       | KAFKA CLIENT + Extensions -> Validation API -> Persistance Component +                  |
-                       +------------->+ ------------------------------------------------------+                  |
-                                      +                       Spring Boot                     +------------------+
-                                      +++++++++++++++++++++++++++++++++++++++++++++++++++++++++                   
+ ++++++++++++++++++++++               +++++++++++++++++++++++++++++++++
+ +                    +      REST     +         Service discovery     +
+ +                    +-------------->+-------------------------------+        REST
+ +                    +               +             ZooKeeper         +<-----+--------+------+
+ + Streaming Platform +               +++++++++++++++++++++++++++++++++      |        |      |
+ +                    +                                                      |        |      |
+ +                    + KAFKA CLIENT ++++++++++++++++++++++++++++++++++      |        |      |
+ +                    +<------------>+          Broadcaster           +------+        |      |
+ +                    +              +--------------------------------+               |      |
+ +--------------------+              +          Spring Boot           +               |      |
+ +       KAFKA        +              ++++++++++++++++++++++++++++++++++               |      |
+ ++++++++++++++++++++++   REST            ^        + STATICS +  |                     |      |
+       ^        + API +<-------+          |        +++++++++++  |                     |      |
+       |        +++++++        |      SSE |            ^        |                     |      |
+       |                       |          |            |        |                     |      |
+       |                       |          |            |        |                     |      |
+       |                     ++++++++++++++++   HTTP   |        |  DB DRIVER          |      |
+       |                     +    WebApp    +----------+        +--------------+      |      |
+       |                     +--------------+                                  |      |      |
+       |                     +  JAVASCRIPT  +                                  |      |      |
+       |                     ++++++++++++++++                                  v      |      |
+       |                                                                     +++++++++++++   |
+       |                                                          DB DRIVER  + Database  +   |
+       |                                                        +----------->+-----------+   |
+       |                                                        |            + Couchbase +   |
+       |  KAFKA   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++  +++++++++++++   |
+       |  CLIENT  + Extensions -> Validation API -> Persistance Component +                  |
+       +--------->+ ------------------------------------------------------+                  |
+                  +                       Spring Boot                     +------------------+
+                  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
              
 === Service discovery
 
