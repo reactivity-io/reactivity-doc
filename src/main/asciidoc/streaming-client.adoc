@@ -1,0 +1,37 @@
+= Streaming Client
+
+== Introduction
+
+Clients like web application connect to `Reactivity` in order to receive a stream of `Artifact` 's according to the state of the `User` session.
+Generally speaking, the client will use a `Reactivity` API to:
+
+* Subscribe to an `Organization` view.
+* Receive data that are part of those views.
+
+Data related to different views will be broadcastet by the server to a set of `SSE` connections, one per `User` session.
+Therefore, when an `Artifact` is broadcasted, the server must discard it if the `SSE` connection is associated to a `User` session which has no subscribed view that matches it.
+This document will describe how this will be achieved.
+
+NOTE: see the <<data-model.adoc#events-stream, data model design>> in order to understand the structure of streamed data
+
+== Subscribing to a view
+
+An authenticated `User` has an access to a set of `Organization` s that he's allowed to interract with.
+Those authorizations are stored in the `User` session on server side when the user is authenticated.
+However, a `User` who is connected won't receive data related to its `Organization` for performance reason.
+It's more reasonable to consider that a `User` will decide to work on a particular `Organization` after an explicit action.
+This action will trigger a subscription to all views that belong to the `Organization`.
+Once the client has subscribed to a view, the server will start the emission of all the data matching that view.
+
+== Receive data
+
+A view has the following characteristics:
+
+* A filter based on a timestamp
+* An optional set of filters based on categories
+* A type describing a structure for the `Artifact` data
+
+On the first connection, all `Artifact` currently stored and matching the view filters will be send.
+If, after a disconnection, the client is able to re-open the `SSE` connection, only the `Artifact` s that have not been already sent must be pushed.
+This will be achieved thanks to a header that will contain the last event ID that has been received (see https://www.html5rocks.com/en/tutorials/eventsource/basics[this guide] for more details).
+Each `Artifact` timestamp used in the basic view filter will be sent as an event ID and reused when the `SSE` connection is re-opened in order to limit the view query to the `Artifact` created after the given timestamp.

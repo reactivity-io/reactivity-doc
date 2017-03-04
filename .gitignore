@@ -1,0 +1,8 @@
+﻿target/
+.project
+.settings/
+.checkstyle
+.svn/
+.classpath
+*.iml
+.idea/

@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Introduction</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+body{-webkit-font-smoothing:antialiased}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+body{tab-size:4}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
+</head>
+<body class="article">
+<div id="header">
+<h1>Introduction</h1>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This reference covers all functional and technical design aspects of <code>Reactivity</code>.
+It helps developers to understand how <code>Reactivity</code> works and how it can be integrated, deployed and improved.</p>
+</div>
+</div>
+</div>
+<h1 id="_functional_fundations" class="sect0">Functional fundations</h1>
+<div class="paragraph">
+<p><code>Reactivity</code> is built on top of a set functional fundations described here.
+They define the fundamental business objects manipulated by the users and their dependencies.</p>
+</div>
+<div class="sect1">
+<h2 id="_user">User</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Obviously <code>Reactivity</code> manages the <code>user</code> who needs to create an account in order to use it.
+There is no particular disposition in the definition of a <code>user</code> that differs from the common considerations encountered in softwares.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_organization">Organization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>organization</code> is a working space created by a user where the activity is managed.
+The creator of an <code>organization</code> is free to invite other <code>users</code> to join it and interract with them inside that space.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_artifact">Artifact</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Artifacts</code> are objects created by the users to represent their activity.
+A fundamental property of the artifact is the <code>date</code>, whose meaning is up to the user.</p>
+</div>
+<div class="paragraph">
+<p>The rest of their structure is composed by a set of fields.
+Some of the fields are immutable, can be mandatory and pre-defined by <code>Reactivity</code>.
+Those particular fields will be mentionned inside the <code>Category</code> section.
+This section will also explain how additional fields can be defined at organization level by the users to track additional activity information in the artifacts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_category">Category</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Categories</code> are activity qualifiers.
+They can be defined as a catalog of free values at <code>organization</code> level.
+A <code>category</code> can be used to tag an activity and is identified as a field of the artifact, marked as optional or not by the <code>user</code>.
+This offers filtering and grouping capabilities.
+<code>Reactivity</code> defines built in categories with a data source based on the organization&#8217;s state:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User: the <code>user category</code> is an artifact&#8217;s field optionally filled that is composed of the users associated to the current selected organization.</p>
+</li>
+<li>
+<p>Status: a <code>status category</code> is an artifact&#8217;s field optionnally filled with <code>TODO</code>, <code>WIP</code> or <code>DONE</code> value.</p>
+</li>
+<li>
+<p>Interval: an <code>interval</code> allows to group the activity by <code>day</code>, <code>week</code>, <code>month</code>, <code>hour</code> or <code>minute</code>. This <code>category</code> can&#8217;t be associated to an artifact but allows a <code>table view</code> to compute its <code>date</code>, as described in the <code>Table</code> section.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Following rules are defined for the <code>categories</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>User</code> and <code>Status</code> categories can be customized at organization level. Additional items can be added with free labels and pre-defined items can be renamed or removed.</p>
+</li>
+<li>
+<p>If the <code>day interval</code> category is used, the date of the artifact is automatically computed according to the associated day.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_view">View</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <code>view</code> is a representation of the activity produced over a period of time by the <code>users</code> inside an <code>organization</code>.</p>
+</div>
+<div class="paragraph">
+<p>This fundamental object defines from when the activity of the <code>organization</code> will be viewed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>start date</code> can be explictely defined. In that case, a <code>end date</code> can be optionally specified. If no <code>end date</code> is defined, the period covers all the activity newer than the <code>start date</code>.</p>
+</li>
+<li>
+<p>If no <code>start date</code> is defined, the <strong>n</strong> last <code>artifacts</code> are displayed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optionally the view can be also associated to a category that will be used to filter more the activity to display.
+<code>Artifact</code> created in that view will be automatically associated to that category.</p>
+</div>
+<div class="paragraph">
+<p>Many <code>views</code> can be defined inside an <code>organization</code>.
+A <code>view</code> is also typed with the structure of data that is ready to consume.
+Those structures have a immutable definition and are enumerated by <code>Reactivity</code> for all <code>organizations</code>.</p>
+</div>
+<div class="paragraph">
+<p>A <code>view</code> can be marked as private by the <code>user</code> who creates it in order to not make it visible by the others.</p>
+</div>
+<div class="sect2">
+<h3 id="_list">List</h3>
+<div class="paragraph">
+<p>A <code>list</code> is a basic data structure that types the view that displays the <code>artifacts</code> on several lines.
+A line can be configured to display some categories and hide some other information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_table">Table</h3>
+<div class="paragraph">
+<p>A <code>table</code> is a data structure that can type a <code>view</code>.
+A <code>table</code> displays the <code>artifacts</code> in a matrix with one dimension (column) or optionally with two dimensions (columns + rows).
+Columns and rows are defined with the available <code>categories</code> (<code>user</code>, <code>status</code>, <code>interval</code> and additional catalogs defined in the organization).
+When the <code>categories</code> are used to list the columns or the rows, their values are automatically associated to the artifact regarding its position inside the <code>table</code>.</p>
+</div>
+<div class="paragraph">
+<p>When the <code>artifact</code> 's fields values corresponding to the <code>category</code> used in the columns and the rows are not defined, <code>artifacts</code> are displayed outside the <code>table</code>.
+A zone dedicated to that purpose is visible and is part of the <code>table</code> type.</p>
+</div>
+<div class="paragraph">
+<p>When an <code>interval category</code> is used to define the columns or the rows, the <code>artifact date</code> is automatically computed with the associated value that has been obtained relatively to the <code>starting date</code> of the <code>view</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_time_series">Time series</h4>
+<div class="paragraph">
+<p><code>Time series</code> is a data structure that type a <code>view</code>.
+The values correspond to the result of an operation that has counted the number of <code>artifacts</code> by grouping them with a particular <code>category</code> value.
+The result of that transformation allows the <code>view</code> to let the <code>user</code> chose between different kind of chart (<code>line</code>, <code>pie</code>, <code>bar</code>, <code>gauge</code>, etc).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Following fundamental objects have been defined:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>User</code>: people who interract with <code>Reactivity</code> to manage their activity</p>
+</li>
+<li>
+<p><code>Organization</code>: the space where <code>users</code> manage their activity</p>
+</li>
+<li>
+<p><code>Artifact</code>: the object that reflects the <code>user</code> activity</p>
+</li>
+<li>
+<p><code>View</code>: the way activity is viewed by <code>users</code> and which activity of the <code>organization</code></p>
+</li>
+<li>
+<p><code>Table</code> or <code>Time series</code>: a data structure selected by the <code>view</code> according to its needs to display the data</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A set of basic <a href="mockups.pdf">mockups</a> illustrates how the different objects can be managed through the UI.</p>
+</div>
+</div>
+</div>
+<h1 id="_architecture" class="sect0">Architecture</h1>
+<div class="sect1">
+<h2 id="_principles">Principles</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_based_on_reactive_streams">Based on reactive streams</h3>
+<div class="paragraph">
+<p><code>Reactivity</code> architecture allows the system to face an unpredictible load of data when the users, the data sources or even the resources of some parties inside the information system scale.
+This is why all the core <a href="http://www.reactive-streams.org">architecture</a> heavily uses the reactive streams where each service acts as a consumer and/or as a producer, emphasing an event-driven model in all layers.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_event_driven_system">Event-driven system</h3>
+<div class="paragraph">
+<p>The event driven system is ready to route messages from source to sink in both live and batch contexts.
+This need comes from the necessity to cover messaging based communication between the users and also asynchronous streams processing to prepare the data for some views.
+Since everything is message, it&#8217;s mandatory to expect that a message is going to be consumed by different consumers for different purpose.
+This case is typically well illustrating by <code>RabbitMQ</code> documentation when talking about <code>direct exchange routing</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://www.rabbitmq.com/img/tutorials/intro/exchange-direct.png" alt="exchange direct"></span></p>
+</div>
+<div class="paragraph">
+<p>We can see that there is as many consumer with different purpose as many routing keys are declared.
+But it&#8217;s important to notice that two consumers for the same purpose can be registered, and only one of them will consume the message.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stream_processing_capabilities">Stream processing capabilities</h3>
+<div class="paragraph">
+<p><code>Reactivity</code> architecture expects a various number of streams and transformations of those streams.
+The transformation phase requires messages to be delivered in the same order they are publishing.
+This means also that if a consumer fails to acknowledge a message consumption, it must be able to easily retry to process the same message before treating a new one.</p>
+</div>
+<div class="paragraph">
+<p>Transformation can be also aggregations to satisfy some user views requirements.
+This means that a stream can be composed of different streams.</p>
+</div>
+<div class="paragraph">
+<p>There is no reason to exclude some system interractions from the asynchronous messaging model.
+Even a click from a user can be considered as a stream source.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67" alt="https://github.com/staltz"></span></p>
+</div>
+<div class="paragraph">
+<p>This consideration can be wrong in a few cases where technical constraints make more realistic a different technique.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_streaming_platform">Streaming platform</h3>
+<div class="paragraph">
+<p>Routing messages with guarantee of delivery, ordering preservation, acknowledgement mechanism and high performance must be addressed by a distributed streaming platform.
+That streaming platform will allow all producers and consumers to register themselves.
+This is that platform that will receive all messages from producers and push them to consumers.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/streaming-platform.png" alt="streaming platform"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_microservice_architecture">Microservice architecture</h3>
+<div class="paragraph">
+<p>The streaming platform will interact with producers and consumers in respect of <a href="http://www.martinfowler.com/articles/microservices.html">microservice architecture definition</a>.
+This mainly means that a consumer or a producer is considered as a component serving one purpose, exposing a clear API and easy to replace in the information system.</p>
+</div>
+<div class="paragraph">
+<p>A microservice is autonomous as much as possible which is possible when control of data is decentralized.
+Consumers and producers can take advantage of this by embedding their own database, which can lead to a duplication of data.
+A consistency check mechanism should be considered to regularly make sure that a database is not incorrectly synchronized with others.
+In case of unexpected desynchronization (typically a state that is expected to be synchronized regarding the messages that are delivered and those who are not), a re-initialization of that data should be possible.
+Message streaming should be used as much as possible to replicate a data from scratch, including transformations process.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extensible">Extensible</h3>
+<div class="paragraph">
+<p><code>Reactivity</code> has a core concept but producing and consuming data can take different forms.
+This is why <code>Reactivity</code> must be extensible by providing a pluggable API allowing extensions to register to the system.
+An extension can cover different capabilities.</p>
+</div>
+<div class="sect3">
+<h4 id="_data_synchronization">Data synchronization</h4>
+<div class="paragraph">
+<p>An extension connects to a different source of data and import from it a set of data stored as a set of <code>Artifacts</code>.
+The extension must be reactive to changes in that source and incrementally update <code>Reactivity</code>.
+The extension can be notified by changes in <code>Reactivity</code> in order to leverage bi-directional synchronization.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_artifact_extension">Artifact extension</h4>
+<div class="paragraph">
+<p>An extension defines additional build-it functionalities allowing to manage more information and interractions inside an <code>Artifact</code>.
+This means that the original data model inside an <code>Artifact</code> can be extended by each extension.
+This also means that specific actions defined by the extensions can be trigerred when user interracts with that data.
+Most of the time, an <code>Artifact</code> extension will embed data synchronization capabilities.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_key_technologies">Key technologies</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_based_on_oss">Based on OSS</h3>
+<div class="paragraph">
+<p>Technologies selected in respect of architecture principles must be open source.
+Selection process must have a particular attention to the license to avoid patent or viral clause in the open source license.
+<code>Apache 2.0</code> and <code>MIT</code> licenses are the typical open source license recommended for the technologies used by <code>Reactivity</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_8_as_base_line_version">Java 8 as base line version</h3>
+<div class="paragraph">
+<p>The latest version of <code>Java</code> is the version 8.
+This version will be used in the core of <code>Reactivity</code> as it&#8217;s well maintained by <code>Oracle</code>, provides new features (especially around the <code>Stream</code> API) and is required by different technologies selected in the next section.</p>
+</div>
+<div class="paragraph">
+<p>The goal of <code>Reactivity</code> is also to take advantage from the features introduced in next <code>Java</code> releases and be upgraded to <code>Java</code> 9 when available.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_progressive_web_app">Progressive Web App</h3>
+<div class="paragraph">
+<p>Progressive web apps are a set of technologies and concepts designed to give the best possible user experience, whatever the device.
+The main concepts will be implemented in Reactivity wep-application:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Offline loading</strong>: Thanks to Service Workers, which manage the absence of network; the user must always have something displayed on the screen</p>
+</li>
+<li>
+<p><strong>Loading performance</strong>: The app must load fast</p>
+</li>
+<li>
+<p><strong>Access on the homescreen</strong>: By defining a JSON-based manifest</p>
+</li>
+<li>
+<p><strong>Notifications</strong>: which allow to update the application for the user (even in the absence of a network, thanks to Service Worker)</p>
+</li>
+<li>
+<p><strong>Responsive design</strong>: So that the application is adapted to any device</p>
+</li>
+<li>
+<p><strong>Speed</strong>: 60 fps everywhere</p>
+</li>
+<li>
+<p><strong>Security</strong>: https everywhere</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In order to leverage those concepts, <code>Reactivity</code> will use <code>Polymer</code>, in its <a href="https://www.polymer-project.org/2.0/docs/about_20">2.0 version</a> (preview for the moment). Polymer is based on the web-components and provides some.
+There are several advantages to relying on web components, and especially two that have a definite interest compared to Reactivity:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>each component is insulated, and possibly developed in the desired technology</p>
+</li>
+<li>
+<p>it is easy to contribute to the project thereafter, given that we provide a basis, it will be easy to iterate over</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Moreover, as <code>Reactivity</code> must load fast, the <a href="https://webpack.github.io/docs/code-splitting.html">code-splitting pattern</a>, and the <a href="https://www.polymer-project.org/1.0/toolbox/server">PRPL pattern</a> are two solutions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_framework_and_platforms">Framework and platforms</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_kafka_as_distributed_streaming_platform">Kafka as distributed streaming platform</h3>
+<div class="paragraph">
+<p><a href="http://kafka.apache.org">Apache Kafka</a> is the central platform of <code>Reactivity</code> that takes messages sent by producers and delivers them to consumers.
+<code>Kafka</code> provides the key following benefits that make it a perfect solution for <code>Reactivity</code> requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Scalability</strong>: <code>Kafka</code> is distributed, which make that solution highly scalable. It uses <a href="https://zookeeper.apache.org">ZooKeeper</a> as service discovery system to keep the nodes in touch, which ease operations.</p>
+</li>
+<li>
+<p><strong>Ordering</strong>: <code>Kafka</code> stores the messages in a partition that is ordered, giving the guarantee that messages have been consumed in the order they are emitted. This aspect is a key requirements for <code>Reactivity</code> as described in the architecture principles.</p>
+</li>
+<li>
+<p><strong>Acknowledgment</strong>: Thanks to the offset commit technique, <code>Kafka</code> provides a very simple acknowledgement capability that consumers can use to guarantee that messages will be consumed in <code>Reactvity</code> system.</p>
+</li>
+<li>
+<p><strong>Consumer group</strong>: <code>Kafka</code> allows consumers to be grouped with a simple label attached to them. This allows a message to be consumed for different purpose and to let the consumers scale without the risk to perform an action twice because of consumption duplication.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_spring_5_as_consumer_producer_stack">Spring 5 as consumer/producer stack</h3>
+<div class="sect3">
+<h4 id="_spring_web_reactive">Spring Web Reactive</h4>
+<div class="paragraph">
+<p><code>Spring</code> version 5 comes with a <a href="http://docs.spring.io/spring-framework/docs/5.0.0.M1/spring-framework-reference/html/web-reactive.html">Spring Web Reactive</a> support which allows to exchange data in respect of reactive streams.
+The core API implementation for reactive streams with <code>Spring</code> is <a href="https://projectreactor.io">Reactor</a>.</p>
+</div>
+<div class="paragraph">
+<p>Web Reactive support relies on servers without the requiring <code>Servlet</code> API, which means that <code>Netty</code> can be used as well as <code>Tomcat</code>.
+The more focused, low-level approach of <code>Netty</code> fits nicely the scope of the consumer and the producer in <code>Reactivity</code>, which makes it a preferable solution.</p>
+</div>
+<div class="paragraph">
+<p>On top of that, consumers and producers will be able to use the <code>REST</code> support in <code>Spring</code> WEB to easily collaborate with the other components of the system.
+This communication interface can complement with additional <code>Spring</code> components described in the next sections.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spring_data">Spring Data</h4>
+<div class="paragraph">
+<p>In addition to the WEB module, <code>Spring Data</code> also uses <code>Reactor</code> to provide a complete asynchronous streaming pipeline from the database to the HTTP response.
+The project offers a good level of abstraction with the different database providers and remains a strong partner in development using <code>Spring</code> when interractions with database are required.
+Obviously, data need to be stored and read in <code>Reactivity</code>.
+<code>Spring Data</code> will be key for this kind of manipulations.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spring_cloud_stream">Spring Cloud Stream</h4>
+<div class="paragraph">
+<p><a href="https://cloud.spring.io/spring-cloud-stream">Spring Cloud Stream</a> is a project that helps interacting with message driven middleware.
+It provides a dedicated support for <code>Kafka</code> with an unified API that brings some abstractions in provider interractions.
+This project will help consumers and producers to connect with <code>Kafka</code> in order to receive and emit messages.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spring_cloud">Spring Cloud</h4>
+<div class="paragraph">
+<p><a href="http://projects.spring.io/spring-cloud">Spring Cloud</a> brings a lot of key components to address deployment issues for a application supposed to be scalable and highly available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Service discovery of consumers and producers in the system to automatically scale</p>
+</li>
+<li>
+<p>Circuit breaker in consumers and producers in the system to be more fault-tolerant</p>
+</li>
+<li>
+<p>Property management to coordinate all consumers and producers configuration</p>
+</li>
+<li>
+<p>Client load balancing to easily control the trafic between components without the need to install a load balancer everywhere</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spring_rest_docs">Spring REST Docs</h4>
+<div class="paragraph">
+<p><a href="https://projects.spring.io/spring-restdocs">Spring REST Docs</a> provides a very handy way to document and test the APIs in a single activity.
+It extends the integration testing API of <code>Spring</code> to build <code>AsciiDoc</code> files regarding the assertions performed on the services that are test.
+This projects answer the need to documentation in an easy maintainance way.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spring_security">Spring Security</h4>
+<div class="paragraph">
+<p><a href="http://projects.spring.io/spring-security">Spring Security</a> project provides a very large of techniques that allows to secure <code>Reactivity</code>.
+This framework will be leverage on the consumers and producers that need to deal with user authentication and authorizations.</p>
+</div>
+<div class="sect4">
+<h5 id="_hazelcast">Hazelcast</h5>
+<div class="paragraph">
+<p><a href="https://hazelcast.com">Hazelcast</a> allows <code>Spring Security</code> manage a distributed session across several <code>JVM</code>, allowing to scale the micro services without any issue at authentication level.
+<code>Hazelcast</code> also has the advantage of being a lighweight solution directly embedded in the <code>Spring Boot</code> application and does not require to be launched as an additional standalone component.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spring_boot">Spring Boot</h4>
+<div class="paragraph">
+<p><a href="http://projects.spring.io/spring-boot">Spring Boot</a> allows to quickly build a standalone component, easy to package in a uber JAR that make it easy to deploy and run.
+This completely emphasizes the Microservice architecture style and will be a key framework to support consumers and producers development.</p>
+</div>
+<div class="paragraph">
+<p>Almost all the <code>Spring</code> projects has support in <code>Spring Boot</code> that ease their integration with a <code>conventions over configuration</code> approach.</p>
+</div>
+<div class="paragraph">
+<p>It also brings the key capabilities covering various issues of <code>Reactivity</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitoring of the different consumers and producers in the system with the <code>Actuator</code> module</p>
+</li>
+<li>
+<p>Integration testing of the services provided by the consumers and the producers</p>
+</li>
+<li>
+<p>Development tool with per environment configuration and hot reload support</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_couchbase_server_as_document_database">Couchbase server as document database</h3>
+<div class="paragraph">
+<p>WEB technologies such as <code>Javascript</code> describe object structures in <code>JSON</code> format.
+This format is also used in document oriented databases.
+Each artefact can be represented in a single document that will be loaded by the database when requested by the user in a particular view.
+Some transformation results can be also represented in a document, which makes document database adapted for <code>Reactivity</code> requirements.</p>
+</div>
+<div class="paragraph">
+<p><code>Couchbase</code> is document oriented database and distributed by design that meets the scalability requirements of <code>Reactivity</code>.
+This database also provides additional interesting products like embedded database for mobile that can be leveraged to cover new features.
+This is why our primary choice goes for <code>Couchbase</code> server to store the data of <code>Reactivity</code>.</p>
+</div>
+<div class="paragraph">
+<p>Since a <code>JSON</code> document data model can be easily extended by addibg more properties to it, <code>Couchbase</code> also offers the opportunity to dynamically add extensions to <code>Reactivity</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_traefik_as_reverse_proxy">Traefik as reverse proxy</h3>
+<div class="paragraph">
+<p>Front-end architecture will balance the requests coming from the web clients to different instances.
+This will be achieved by <a href="https://traefik.io">Traefik</a>, a moden reverse proxy dealing with microservices architecture.
+A <code>ZooKeeper</code> support is provided out of the box, allowing to detect all available back-ends and remove them in case of failure.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_components_architecture_view">Components architecture view</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview">Overview</h3>
+<div class="paragraph">
+<p>Different components will interract with different roles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Service discovery</p>
+</li>
+<li>
+<p>Producers and consumers</p>
+</li>
+<li>
+<p>Web application</p>
+</li>
+<li>
+<p>Database</p>
+</li>
+<li>
+<p>Streaming platform</p>
+</li>
+<li>
+<p>Extensions</p>
+<div class="literalblock">
+<div class="content">
+<pre>++++++++++++++++++++++++++++++               +++++++++++++++++++++++++++++++++
++                            +      REST     +         Service discovery     +
++                            +--------------&gt;+-------------------------------+        REST
++                            +               +             ZooKeeper         +&lt;-----+--------+------+
++     Streaming Platform     +               +++++++++++++++++++++++++++++++++      |        |      |
++                            +                                                      |        |      |
++                            + KAFKA CLIENT ++++++++++++++++++++++++++++++++++      |        |      |
++                            +&lt;------------&gt;+          Broadcaster           +------+        |      |
++                            +              +--------------------------------+               |      |
++----------------------------+              +          Spring Boot           +               |      |
++           KAFKA            +              ++++++++++++++++++++++++++++++++++               |      |
+++++++++++++++++++++++++++++++   REST            ^        + STATICS +  |                     |      |
+          ^            + API +&lt;-------+          |        +++++++++++  |                     |      |
+          |            +++++++        |      SSE |            ^        |                     |      |
+          |                           |          |            |        |                     |      |
+          |                           |          |            |        |                     |      |
+          |                         ++++++++++++++++   HTTP   |        |  DB DRIVER          |      |
+          |                         +    WebApp    +----------+        +--------------+      |      |
+          |                         +--------------+                                  |      |      |
+          |                         +  JAVASCRIPT  +                                  |      |      |
+          |                         ++++++++++++++++                                  v      |      |
+          |                                                                         +++++++++++++   |
+          |                                                              DB DRIVER  + Database  +   |
+          |                                                            +-----------&gt;+-----------+   |
+          |                                                            |            + Couchbase +   |
+          |              +++++++++++++++++++++++++++++++++++++++++++++++++++++++++  +++++++++++++   |
+          | KAFKA CLIENT + Extensions -&gt; Validation API -&gt; Persistance Component +                  |
+          +-------------&gt;+ ------------------------------------------------------+                  |
+                         +                       Spring Boot                     +------------------+
+                         +++++++++++++++++++++++++++++++++++++++++++++++++++++++++</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_service_discovery">Service discovery</h3>
+<div class="paragraph">
+<p><code>ZooKeeper</code> is used as a centralized system to resolve all microservices.
+It&#8217;s deployed in a highly available cluster where nodes replicate their configuration to each others.
+Microservices register themselves to <code>ZooKeeper</code> and retrieve dependencies through it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_streaming_platform_2">Streaming platform</h3>
+<div class="paragraph">
+<p>The streaming platform implemented with <code>Kafka</code> offers a <code>REST</code> API that can be consumed to produce new artifacts.
+When a new event is received by <code>Kafka</code>, it keeps it until it has been delivered and acknowledge by a consumer.
+<code>Kafka</code> is deployed as a cluster of multiple distributed nodes.
+All nodes register to <code>ZooKeeper</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_database">Database</h3>
+<div class="paragraph">
+<p><code>Couchbase</code> is the document oriented database that stores data of <code>Reactivity</code>.
+This distributed system is deployed as a cluster where nodes register to <code>ZooKeeper</code>.
+Asynchronous driver is available to read and write documents to the database.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_consumers_and_producers">Consumers and producers</h3>
+<div class="sect3">
+<h4 id="_broadcaster">Broadcaster</h4>
+<div class="paragraph">
+<p>A <code>Spring Boot</code> application which represents a microservice that suspends <code>SSE</code> connections to stream data from <code>Couchbase</code>.
+It also receives new message notifications from <code>Kafka</code> that are broadcasted to all suspended <code>SSE</code> connections.</p>
+</div>
+<div class="paragraph">
+<p>The broadcaster can be deployed as a set of instances where <code>SSE</code> connections are balanced.
+This means that each instance must be in a different consumer group to be notified by <code>Kafka</code> when a notification is sent.
+In fact, a notification must be sent to all suspended connections.
+Therefore, each instance of the broadcaster must receive the events from <code>Kafka</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validator_api_and_persistance_component">Validator API and Persistance component</h4>
+<div class="paragraph">
+<p>A <code>Spring Boot</code> application which receives from <code>Kafka</code> new data to be serialized through <code>Couchbase</code> and aknowledges their consumption.
+Before a message is persisted, a validation API must be invoked to make sure no data consistency rule is violated.
+If the message is not valid, it&#8217;s discarded.
+If the message is valid, it&#8217;s persisted and sent to the broadcaster through a <code>Kafka</code> topic.</p>
+</div>
+<div class="paragraph">
+<p>The validation API has a pluggable architecture where extensions can be registered to customize the validation logic for the built-in topics but also additional topics.
+Additional statics (<code>JS</code>, <code>CSS</code>, <code>HTML</code>) can be also served to the web application in order to extend the user experience of <code>Reactivity</code>.</p>
+</div>
+<div class="paragraph">
+<p>The microservice can be deployed as a set of instances where messages sent by <code>Kafka</code> will be balanced.
+This means that all instances must be part of the same consumer group to make sure only one of them will be notified.
+In fact, we don&#8217;t want to persist the same event and send the same notification twice.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="http://kafka.apache.org/images/consumer-groups.png" alt="consumer groups"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_web_application">Web application</h4>
+<div class="paragraph">
+<p>The web application consumes <code>SSE</code> streams from the back-end.
+It also pushes new messages to the <code>Kafka</code> service to be validated asynchronously by <code>Reactivity</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_note_on_load_balancing">Note on load balancing</h3>
+<div class="paragraph">
+<p>In this architecture, <code>Traefik</code> is in charge of balancing requests coming from web application to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Kafka</code> cluster where nodes expose a REST API to send message</p>
+</li>
+<li>
+<p><code>Spring Boot</code> applications that serve statics (<code>JS</code>, <code>CSS</code>, <code>HTML</code>) including extensions and also <code>SSE</code> connections</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>Traefik</code> will use <code>ZooKeeper</code> to retrieve the correct backends instances.
+Other components will retrieve their dependent services also via <code>ZooKeeper</code> but a client load balancing approach will be used:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Spring Boot</code> applications will balance requests to <code>Couchbase</code> thanks to it&#8217;s client driver</p>
+</li>
+<li>
+<p><code>Spring Boot</code> applications will naturally balance messages to <code>Kafka</code> since the cluster has a different leader for each partition</p>
+</li>
+<li>
+<p><code>Kafka</code> will balance messages to <code>Spring Boot</code> consumers according to server list retrieved from <code>ZooKeeper</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_data_model" class="sect0">Data model</h1>
+<div class="sect1">
+<h2 id="_principles_2">Principles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Reactivity</code> stores and exchange data in the <code>JSON</code> format.
+One reason why <code>JSON</code> is used is the flexibility it offers in the data model.</p>
+</div>
+<div class="paragraph">
+<p>This documentation describes the mandatory fields that must be found in a <code>JSON</code> document and which path can be freely structured.
+The documentation also pays attention to the data model which is persisted to the database comparing to the informations dedicated to event types.
+Moreover, since everything is stream in <code>Reactivity</code>, different fields of the data model are flagged to understand when they are defined and where they transit inside the system.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_events_stream">Events stream</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data are always wrapped to an event.
+This allows <code>Reactivity</code> to understand what to do with the data.
+Therefore, any producer must use a particular data structure in their <code>JSON</code> document to wrap their data:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+  "version" : "The module version",
+  "event" : "The event type here",
+  "data" : "The data here",
+  "timestamp" : "The event timestamp",
+  "id" : "The event ID",
+  "tag" : "A random value that looks like an UID"
+}</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_version">version</h3>
+<div class="paragraph">
+<p>The <code>version</code> is a value indicating the version of the module that produces the message.
+This version can be used by the consumer to know what kind of assertion can be made on the data.
+By default, new version must be backward compatible which means that a consumer should be able to deal with an event flagged with an older version.</p>
+</div>
+<div class="paragraph">
+<p>Version format follows the <a href="http://semver.org">semver</a> protocol.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_event">event</h3>
+<div class="paragraph">
+<p>The <code>event</code> describes the nature of the message.
+The possible values are an enumeration specific to the type of data contained inside the message.</p>
+</div>
+<div class="paragraph">
+<p>No field in the message indicates the type of data because it corresponds to the topic they are published to.
+In the core module, messages can be published to the following topic:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>user</code>: the topic where events related to <code>Users</code> are published</p>
+</li>
+<li>
+<p><code>organization</code>: the topic where events related to <code>Organization</code> are published</p>
+</li>
+<li>
+<p><code>artifact</code>: the topic where events related to <code>Artifacts</code> are published</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This statement is true only when the client produce and consumes data directly from/to the topic (through <code>Kafka</code>).
+However, there is the particular case of a WEB application subscribing to a source of events comming from a suspended <code>SSE</code> connection from the server.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>         +--------------+-------------+
++-------&gt;|     Topic    |             |
+|        +--------------+             |       +-----------------+
+|        |     user     | Broadcaster |  SSE  |                 |
+|        | organization |             |------&gt;| Web Application |
+|        |   artifact   |             |       |                 |
+|        +--------------+-------------+       +-----------------+
+|
+|        +---------------------------+
+|        |                           |
++--------+           KAFKA           |
+         |                           |
+         +---------------------------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this simple diagram we can see that the <code>Broadcaster</code> is consuming different topics from <code>Kafka</code>.
+When a message is received, it&#8217;s pushed to the web application that established a <code>SSE</code> connection.
+The only chance for the web application to understand the type of data represented by a received message is to find <code>topic</code> attribute in the <code>JSON</code>.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+  "topic" : "organization|user|artifact"
+  "version" : "...",
+  "event" : "...",
+  "data" : "...",
+  "timestamp" : "...",
+  "id" : "...",
+  "tag" : "..."
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data">data</h3>
+<div class="paragraph">
+<p>The <code>data</code> contains the payload of the event provided by the producer.
+The structure of the data depends on the topic where is has been published, the <code>event</code> and <code>version</code> fields values.
+The consumer will use those informations to know what structure is expected in the <code>data</code> value.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_timestamp_and_id">timestamp and id</h3>
+<div class="paragraph">
+<p><code>timestamp</code> and <code>id</code> are not defined by the producer but are assigned by the streaming platform.
+They allow to identify the message inside <code>Reactivity</code> system and to know when it has been published by the consumer.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, a producer can generate a message that simply have this structure:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+  "version" : "...",
+  "event" : "...",
+  "data" : "...",
+  "tag" : "..."
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tag">tag</h3>
+<div class="paragraph">
+<p>Since the <code>id</code> is not generated by the producer, it&#8217;s not possible for him to recognize a produced message when it&#8217;s received through another channel.
+The <code>tag</code> allows him to address this issue.
+The producer can associate a random value that looks like an unique UID to the <code>tag</code> attribute, allowing him to implement a kind of acknowledgment for the produced message.
+This is particularly handy for web applications that receive a message previously produced.
+In fact, the web application acts as a producer who expects to receive its own messages sent from the broadcaster.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    +----------------------------+ SSE - Consume message A  +-----------------+
++--&gt;|     Topic ---&gt; Broadcaster |-------------------------&gt;| Web Application |
+|   +----------------------------+                          +-----------------+
+|                                                                    |
+|   +---------------------------+                                    |
+|   |                           |         Produce message A          |
++---+           KAFKA           |&lt;-----------------------------------+
+    |                           |
+    +---------------------------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this figure, we see that the message <code>A</code> produced by the web application is received from the broadcaster.
+With the <code>tag</code> attribute whose value won&#8217;t have been changed, the web application will be able to recognized it and to treat it differently comparing to the messages produced by other instances.
+For example, the web application can perform an optimistic change on the UI as soon as the message is sent, giving a better feeling of performance to the user.
+When the message is received, the web application can simply ignore it.
+The web application can also raise an error if the message is never received (timeout), which means that the message has possibly been discarded for any reason.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extensions">Extensions</h3>
+<div class="sect3">
+<h4 id="_additional_data_types_definition">Additional data types definition</h4>
+<div class="paragraph">
+<p>Extensions are allowed to define their own type of data stored in dedicated <code>buckets</code> (the document space in <code>Couchbase</code>) and sent through specific <code>topics</code> (in <code>Kafka</code>).
+It&#8217;s strongly recommended for an extension to use the same message structure described in previous sections.</p>
+</div>
+<div class="paragraph">
+<p>To avoid clashes with build-in features of <code>Reactivity</code>, any extension <code>topic</code> and <code>bucket</code> must follow the pattern <code>[extension-id]/[topic-name]</code>.
+The <code>extension-id</code> is an unique identifier for the extension in <code>Reactivity</code>.
+This value must be used when the extension creates its own topic.
+The <code>topic-name</code> is a value each extension is free to define.
+This allows the extensions to define as much as data type they want and store their associated documents independently to the database.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_built_in_data_types_extension">Built-in data types extension</h4>
+<div class="paragraph">
+<p>When an extension extends an existing data type (<code>Artifacts</code>, <code>Users</code> or <code>Organizations</code>), the mechanism is different.
+The extension is allowed to modify the document created by the built-in features of <code>Reactivity</code>.
+In that scenario, the extension is integrated to a stream processing module that intercepts messages comming from a targetted topic (<code>user</code>, <code>artifact</code> or <code>organization</code>).
+The extension can validate the message payload and discard it in case of rule violation, modify the payload or trigger any specific action before the message is persisted.</p>
+</div>
+<div class="paragraph">
+<p>The extension is free to manage specific properties at any level of the message.
+For instance:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "version" : "The module version",
+    "event" : "The event type here",
+    "data" : {
+        "my-extension-some-property" : "some value"
+    },
+    "timestamp" : "The event timestamp",
+    "id" : "The event ID",
+    "my-extension-some-property" : "some value"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s strongly recommended that an extension does not add specific properties in a different place than what is defined in the above example.
+Making assertion on the <code>data</code> field structure to add properties in a deeper path is possible but it would strongly couple the core with the extension, which would potentially lead to lots of regressions after a new release.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_built_in_data_types_and_associated_events">Built-in data types and associated events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following section describes the possible values for <code>data</code> and associated <code>event</code> attribute in a message provided by the core of <code>Reactivity</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_user_2">User</h3>
+<div class="paragraph">
+<p>All messages related to the <code>User</code> data type are published to the <code>user</code> topic.</p>
+</div>
+<div class="sect3">
+<h4 id="_event_create_or_event_read_or_event_update">event = 'CREATE' OR event = 'READ' OR event = 'UPDATE'</h4>
+<div class="paragraph">
+<p>The <code>CREATE</code>, <code>READ</code> and <code>UPDATE</code> events for a <code>User</code> has a <code>data</code> attribute associated to a value that looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "email" : "The user email address",
+    "firstname" : "The user first name",
+    "lastname" : "The user last name",
+    "picture" : "The picture of user profile"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>READ</code> and <code>UPDATE</code> events are sent for a given <code>User</code> only to the consumers connected to an <code>Organization</code> that registers this <code>User</code> as a member.</p>
+</div>
+<div class="paragraph">
+<p><strong>email</strong></p>
+</div>
+<div class="paragraph">
+<p>A string corresponding to the user email. Mandatory attribute.</p>
+</div>
+<div class="paragraph">
+<p><strong>firstname</strong></p>
+</div>
+<div class="paragraph">
+<p>A string corresponding to the user first name. Optional attribute.</p>
+</div>
+<div class="paragraph">
+<p><strong>lastname</strong></p>
+</div>
+<div class="paragraph">
+<p>A string corresponding to the user last name. Optional attribute.</p>
+</div>
+<div class="paragraph">
+<p><strong>picture</strong></p>
+</div>
+<div class="paragraph">
+<p>A <code>base64</code> string corresponding to the user picture. Optional attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_delete">event = 'DELETE'</h4>
+<div class="paragraph">
+<p>The <code>DELETE</code> event for a <code>User</code> has a <code>data</code> attribute associated to an empty value.
+In fact, the event simply indicates that a <code>User</code> identified by the event <code>id</code> has been removed.
+Therefore, no more information than the <code>id</code> is required to identify the removed view.</p>
+</div>
+<div class="paragraph">
+<p>This event is sent for a given <code>User</code> only to the consumers connected to an <code>Organization</code> that registers this <code>User</code> as a member.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_organization_2">Organization</h3>
+<div class="paragraph">
+<p>All messages related to the <code>Organization</code> data type are published to the <code>organization</code> topic.</p>
+</div>
+<div class="sect3">
+<h4 id="_event_create">event = 'CREATE'</h4>
+<div class="paragraph">
+<p>The <code>CREATE</code> event for an <code>Organization</code> has a <code>data</code> attribute associated to a value that looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "name" : "The name of the organization",
+    "picture" : "The picture of the organization",
+    "members" : [{
+            "id" : "The ID of the organization member",
+            "role" : "The role of the member inside the organization"
+    }]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This event is sent through this topic by producer when a new <code>Organization</code> is created.</p>
+</div>
+<div class="paragraph">
+<p><strong>name</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A string corresponding to the <code>Organization</code> name.</p>
+</li>
+<li>
+<p>Mandatory attribute.</p>
+</li>
+<li>
+<p>Must be unique.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>picture</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>base64</code> string corresponding to the <code>Organization</code> picture.</p>
+</li>
+<li>
+<p>Optional attribute.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>members</strong></p>
+</div>
+<div class="paragraph">
+<p>An array containing complex objects with two mandatory fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>id</code>: the <code>User</code> ID corresponding to the member.</p>
+</li>
+<li>
+<p><code>role</code>: the role of the member inside the <code>Organization</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_read_or_event_update">event = 'READ' OR event = 'UPDATE'</h4>
+<div class="paragraph">
+<p>The <code>READ</code> and <code>UPDATE</code> events for an <code>Organization</code> have a <code>data</code> attribute associated to a value that looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "name" : "The name of the organization",
+    "picture" : "The picture of the organization"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This events are sent when a consumer is reading the <code>Organization</code> associated to the current <code>User</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>name</strong></p>
+</div>
+<div class="paragraph">
+<p>A string corresponding to the <code>Organization</code> name. Mandatory attribute.</p>
+</div>
+<div class="paragraph">
+<p><strong>picture</strong></p>
+</div>
+<div class="paragraph">
+<p>A <code>base64</code> string corresponding to the <code>Organization</code> picture. Optional attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_delete_2">event = 'DELETE'</h4>
+<div class="paragraph">
+<p>The <code>DELETE</code> event for an <code>Organization</code> has a <code>data</code> attribute associated to an empty value.
+In fact, the event simply indicates that an <code>Organization</code> identified by the event <code>id</code> has been deleted.
+Therefore, no more information than the <code>id</code> is required to identify the removed <code>Organization</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_add_category_or_event_read_category_or_event_update_category">event = 'ADD_CATEGORY' OR event = 'READ_CATEGORY' OR event = 'UPDATE_CATEGORY'</h4>
+<div class="paragraph">
+<p>The <code>ADD_CATEGORY</code>, <code>READ_CATEGORY</code> and <code>UPDATE_CATEGORY</code> events for an <code>Organization</code> have a <code>data</code> attribute associated to a value that looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "organization": "The organization ID"
+    "name" : "The name of the category"
+    "picture" : "The picture of item category"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Reactivity</code> provides <code>User</code> and <code>Status</code> categories out of the box.</p>
+</div>
+<div class="paragraph">
+<p><strong>organization</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>id</code> of the <code>Organization</code> associated to the category.</p>
+</li>
+<li>
+<p>Mandatory attribute.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>name</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A string representing the name of the category.</p>
+</li>
+<li>
+<p>Mandatory attribute.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>picture</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>base64</code> string corresponding to the category.</p>
+</li>
+<li>
+<p>Optional attribute.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_remove_category">event = 'REMOVE_CATEGORY'</h4>
+<div class="paragraph">
+<p>The <code>REMOVE_CATEGORY</code> event for an <code>Organization</code> has a <code>data</code> attribute associated to an empty value.
+In fact, the event simply indicates that a category identified by the event <code>id</code> has been removed.
+Therefore, no more information than the <code>id</code> is required to identify the removed category.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_add_category_item_or_event_read_category_item_or_event_update_category_item">event = 'ADD_CATEGORY_ITEM' OR event = 'READ_CATEGORY_ITEM' OR event = 'UPDATE_CATEGORY_ITEM'</h4>
+<div class="paragraph">
+<p>The <code>ADD_CATEGORY_ITEM</code>, <code>READ_CATEGORY_CATEGORY</code> and <code>UPDATE_CATEGORY_ITEM</code> events for an <code>Organization</code> have a <code>data</code> attribute associated to a value that looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>   {
+"category": "The category ID"
+       "name" : "The name of the item"
+       "picture" : "The picture of the item"
+   }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Reactivity</code> provides the following values for the built-in categories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>User</code>: all the current <code>Organization</code> members with their <code>id</code> as name and the picture if any</p>
+</li>
+<li>
+<p><code>Status</code>: <code>TODO</code>, <code>WIP</code> and <code>DONE</code> values with no picture</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>category</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>id</code> of the category associated to the item.</p>
+</li>
+<li>
+<p>Mandatory attribute.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>name</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A string attribute the name of the item.</p>
+</li>
+<li>
+<p>Mandatory attribute.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>picture</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>base64</code> string corresponding to the item.</p>
+</li>
+<li>
+<p>Optional attribute.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_remove_category_item">event = 'REMOVE_CATEGORY_ITEM'</h4>
+<div class="paragraph">
+<p>The <code>REMOVE_CATEGORY_ITEM</code> event for an <code>Organization</code> has a <code>data</code> attribute associated to an empty value.
+In fact, the event simply indicates that an item identified by the event <code>id</code> has been removed.
+Therefore, no more information than the <code>id</code> is required to identify the removed item.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_add_member_or_event_remove_member_or_event_update_member">event = 'ADD_MEMBER' OR event = 'REMOVE_MEMBER' OR event = 'UPDATE_MEMBER'</h4>
+<div class="paragraph">
+<p>The <code>ADD_MEMBER</code>, <code>REMOVE_MEMBER</code>, <code>UPDATE_MEMBER</code> events for an <code>Organization</code> have a <code>data</code> attribute associated to a value that looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "organization" : "The organization ID",
+    "members" : [{
+        "id" : "The ID of the organization member",
+        "role" : "The role of the member inside the organization (only when adding or updating a member)"
+    }]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Those events are sent when a consumer is connected to an <code>Organization</code>.
+Only members of that <code>Organization</code> are sent.</p>
+</div>
+<div class="paragraph">
+<p><strong>name</strong></p>
+</div>
+<div class="paragraph">
+<p>A string corresponding to the <code>Organization</code> name. Defined only if value has changed.</p>
+</div>
+<div class="paragraph">
+<p><strong>members</strong></p>
+</div>
+<div class="paragraph">
+<p>An array defined only if members have changed and containing complex objects with two mandatory fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>id</code>: the <code>User</code> ID corresponding to the member.</p>
+</li>
+<li>
+<p><code>role</code>: the role of the member inside the <code>Organization</code>. Only defined when the event is <code>ADD_MEMBER</code> or <code>UPDATE_MEMBER</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_add_view_or_event_read_view">event = 'ADD_VIEW' OR event = 'READ_VIEW'</h4>
+<div class="paragraph">
+<p>The <code>ADD_VIEW</code> and <code>READ_VIEW</code> events for an <code>Organization</code> have a <code>data</code> attribute associated to a value that looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "organization" : "The organization identifier",
+    "name" : "The name of the view",
+    "period" {
+        "from" : "From when the artifacts are displayed",
+        "to" : "Moment until artifacts are displayed",
+        "category" : "The category id providing the timestamp to use"
+    },
+    "filters" : [{
+        "category" : "Filter the artifact with the specified category",
+        "value" : "The value that must equals to the specified category in the filtered artifact"
+    }],
+    "type" : "Type fo the view"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ADD_VIEW</code> event is sent by a producer when a view is created.
+<code>READ_VIEW</code> event is sent to a consumer when this consumer is connected to an <code>Organization</code>.
+Only views related to the <code>Organization</code> are sent.</p>
+</div>
+<div class="paragraph">
+<p><strong>organization</strong></p>
+</div>
+<div class="paragraph">
+<p>The organization <code>id</code> owning the view.</p>
+</div>
+<div class="paragraph">
+<p><strong>name</strong></p>
+</div>
+<div class="paragraph">
+<p>The name of the view is an unique string inside the <code>Organization</code>.
+The value is displayed as a summary of the view.</p>
+</div>
+<div class="paragraph">
+<p><strong>period</strong></p>
+</div>
+<div class="paragraph">
+<p>A complex object describing the period of time covering the displayed informations.
+This object contains the following attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>from</code>: The min date of <code>Artifact</code>. Must be a timestamp in milliseconds. The value is mandatory.</p>
+</li>
+<li>
+<p><code>to</code>: The max date of <code>Artifact</code>. Must be a timestamp in milliseconds if defined. The value can be <code>undefined</code>, <code>null</code> or <code>false</code>. In this case no max date is applied.</p>
+</li>
+<li>
+<p><code>category</code>: The category <code>id</code> that will be used to read the timestamp from the artifact. Must be a timestamp in milliseconds if defined. The value can be <code>undefined</code>, <code>null</code> or <code>false</code>. In this case the event timestamp will be used.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>filters</strong></p>
+</div>
+<div class="paragraph">
+<p>Optional filters in addition to the period that are applied on the <code>Artifact</code> when selecting the data.
+<code>filters</code> value is an array of complex object with two attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>category</code>: the category <code>id</code> that must be used to filter the <code>Artifact</code>. The value is mandatory.</p>
+</li>
+<li>
+<p><code>value</code>: the particular category label that must be associated to the <code>Artifact</code>. The value can be <code>undefined</code>, <code>null</code> or <code>false</code>. In this case any value is accepted since the category exist in the <code>Artifact</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>type</strong></p>
+</div>
+<div class="paragraph">
+<p>The type of view describes a way to display and store the data.
+The possible values are enumerated by the system.
+<code>Reactivity</code> supports out of the box three types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code>: display artifacts in a list with one line per item</p>
+</li>
+<li>
+<p><code>table</code>: display artifacts in a table with one or two dimensions</p>
+</li>
+<li>
+<p><code>timeseries</code>: display the artifacts distributed over a periode of time inside a chart</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additional attributes when <code>type = 'table'</code>.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "columns" : "Category id enumerating the columns",
+    "rows" : "Category id enumerating the rows"
+}</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>columns</code>: a category <code>id</code> containing the values displayed in column titles. <code>Artifact</code> will be organized vertically according to the value of this category. This value is mandatory.</p>
+</li>
+<li>
+<p><code>rows</code>: a category <code>id</code> containing the values displayed in row titles. <code>Artifact</code> will be organized horizontally according to the value of this category. The value can be <code>undefined</code>, <code>null</code> or <code>false</code>. In this case the table has only one dimension.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additional attributes when <code>type = 'timeseries'</code>.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "unit" : "The time unit defining the group level of the time series",
+    "category" : "The category id used to count artifacts"
+    "preferences" : {
+        "colors" : [{
+        "label" : "The category label that should be displayed with a particular color",
+            "value" : "The color to apply for the specified category label"
+        }],
+        "chart" : "The chat that displays the time series"
+    }
+}</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>unit</code>: the time unit that corresponds to the group level of the time series from year to minute. This field is mandatory. Possible values are <code>year</code>, <code>year/month</code>, <code>year/month/day</code>, <code>year/month/day/hour</code>, <code>year/month/day/hour/minute</code>.</p>
+</li>
+<li>
+<p><code>category</code>: the category <code>id</code> defining how <code>Artifact</code> must be grouped. This field is mandatory.</p>
+</li>
+<li>
+<p><code>preferences.color</code>: an array where each object describes the preferred color to represent a category. Each object has a <code>label</code> attribute for the category label and a <code>value</code> for the color to apply.</p>
+</li>
+<li>
+<p><code>prefereces.chart</code>: a string indicated the chart displaying the data. The possible values are managed by the user interface.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_remove_view">event = 'REMOVE_VIEW'</h4>
+<div class="paragraph">
+<p>The <code>REMOVE_VIEW</code> event for an <code>Organization</code> has a <code>data</code> attribute associated to an empty value.
+In fact, the event simply indicates that a view identified by the event <code>id</code> has been removed.
+Therefore, no more information than the <code>id</code> is required to identify the removed view.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_artifact_2">Artifact</h3>
+<div class="paragraph">
+<p>All messages related to the <code>Artifact</code> data type are published to the <code>artifact</code> topic.</p>
+</div>
+<div class="sect3">
+<h4 id="_event_create_or_event_read_or_event_update_2">event = 'CREATE' OR event = 'READ' OR event = 'UPDATE'</h4>
+<div class="paragraph">
+<p>The <code>CREATE</code>, <code>READ</code> and <code>UPDATE</code> events for an <code>Artifact</code> have a <code>data</code> attribute associated to a value that looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "views" : "The id of the different views this artifacts belongs to",
+    "categories" : {
+        "A free category key" : "A free category value"
+    }
+}</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>views</code>: an array containing the <code>id</code> of the different views containing this <code>Artifact</code>.</p>
+</li>
+<li>
+<p><code>categories</code>: a free set of key/value that describes the information defined by the user interface. <code>Reactivity</code> expects the following categories by default:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A key called <code>user</code> associated to an <code>id</code> allowing to associate a <code>User</code> to an <code>Artifact</code></p>
+</li>
+<li>
+<p>A key called <code>status</code> associated to <code>TODO</code>, <code>WIP</code> or <code>DONE</code> (the default items for the <code>Status</code> category) allowing to give a <code>status</code> to an <code>Artifact</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>READ</code> and <code>UPDATE</code> events are sent for a given <code>Artifact</code> only to the consumers connected to an <code>Organization</code> that registers the views containing this <code>Artifact</code>.</p>
+</div>
+<div class="paragraph">
+<p>When the <code>Artifact</code> belongs to a view of type <code>timeseries</code> the categories are actually used to specify time series information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A key corresponding to the grouping category <code>id</code> associated to a value indicating the count result</p>
+</li>
+<li>
+<p>A key called <code>timestamp</code> corresponding to a time in milliseconds of the newest counted <code>Artifact</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_delete_3">event = 'DELETE'</h4>
+<div class="paragraph">
+<p>The <code>DELETE</code> event for an <code>Artifact</code> has a <code>data</code> attribute associated to an empty value.
+In fact, the event simply indicates that an <code>Artifact</code> identified by the event <code>id</code> has been removed.
+Therefore, no more information than the <code>id</code> is required to identify the removed <code>Artifact</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_streaming_client" class="sect0">Streaming Client</h1>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clients like web application connect to <code>Reactivity</code> in order to receive a stream of <code>Artifact</code> 's according to the state of the <code>User</code> session.
+Generally speaking, the client will use a <code>Reactivity</code> API to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Subscribe to an <code>Organization</code> view.</p>
+</li>
+<li>
+<p>Receive data that are part of those views.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Data related to different views will be broadcastet by the server to a set of <code>SSE</code> connections, one per <code>User</code> session.
+Therefore, when an <code>Artifact</code> is broadcasted, the server must discard it if the <code>SSE</code> connection is associated to a <code>User</code> session which has no subscribed view that matches it.
+This document will describe how this will be achieved.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+see the <a href="#events-stream">data model design</a> in order to understand the structure of streamed data
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_subscribing_to_a_view">Subscribing to a view</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An authenticated <code>User</code> has an access to a set of <code>Organization</code> s that he&#8217;s allowed to interract with.
+Those authorizations are stored in the <code>User</code> session on server side when the user is authenticated.
+However, a <code>User</code> who is connected won&#8217;t receive data related to its <code>Organization</code> for performance reason.
+It&#8217;s more reasonable to consider that a <code>User</code> will decide to work on a particular <code>Organization</code> after an explicit action.
+This action will trigger a subscription to all views that belong to the <code>Organization</code>.
+Once the client has subscribed to a view, the server will start the emission of all the data matching that view.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_receive_data">Receive data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A view has the following characteristics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A filter based on a timestamp</p>
+</li>
+<li>
+<p>An optional set of filters based on categories</p>
+</li>
+<li>
+<p>A type describing a structure for the <code>Artifact</code> data</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On the first connection, all <code>Artifact</code> currently stored and matching the view filters will be send.
+If, after a disconnection, the client is able to re-open the <code>SSE</code> connection, only the <code>Artifact</code> s that have not been already sent must be pushed.
+This will be achieved thanks to a header that will contain the last event ID that has been received (see <a href="https://www.html5rocks.com/en/tutorials/eventsource/basics">this guide</a> for more details).
+Each <code>Artifact</code> timestamp used in the basic view filter will be sent as an event ID and reused when the <code>SSE</code> connection is re-opened in order to limit the view query to the <code>Artifact</code> created after the given timestamp.</p>
+</div>
+</div>
+</div>
+<h1 id="_installation" class="sect0">Installation</h1>
+<div class="sect1">
+<h2 id="_purpose">Purpose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page describes how to install and deploy <code>Reactivity</code> in different type of environments in order to use it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_development">Development</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section gives a step-by-step guide to install <code>Reactivity</code> locally.
+This is for development purpose only.</p>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites">Prerequisites</h3>
+<div class="paragraph">
+<p>Before installing the specific components related to <code>Reactivity</code>, make sure you have installed the following tools:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A recent version of <a href="https://git-scm.com/downloads">GIT client</a></p>
+</li>
+<li>
+<p>A recent version of <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java 8</a></p>
+</li>
+<li>
+<p>The latest version of <a href="https://maven.apache.org">Maven 3</a></p>
+</li>
+<li>
+<p>The latest LTS of <a href="https://nodejs.org/en">NodeJS</a> with a recent version of <code>npm</code></p>
+</li>
+<li>
+<p>Your favorite IDE for <code>Java</code> and <code>Web</code> development (some configuration details will be described for <code>IntelliJ</code>)</p>
+</li>
+<li>
+<p>The latest version of <a href="https://www.couchbase.com/nosql-databases/downloads">Couchbase 3 (community edition)</a>. See how to get it with docker below if you use it</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_clone_the_repository">Clone the repository</h3>
+<div class="paragraph">
+<p>Core components are hosted in <a href="https://github.com/reactivity-io/reactivity">this repository</a>.
+You can <a href="https://help.github.com/articles/fork-a-repo">fork it</a> and then <a href="https://help.github.com/articles/cloning-a-repository">clone it</a>.
+The branching model follows the <a href="https://guides.github.com/introduction/flow">GitHub flow</a>.
+You will find for each <a href="https://github.com/reactivity-io/reactivity/issues">feature</a> under development a dedicated branch.</p>
+</div>
+<div class="paragraph">
+<p>The <code>reactivity</code> repository is currently organized with the following structure:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>core</code> directory containing the backend APIs developed in <code>Java</code> with <code>Spring Framework</code>.</p>
+</li>
+<li>
+<p>A <code>front</code> directory containing the frontend web application developed in <code>Javascript</code> with <code>Polymer2</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pre_installed_tools_with_docker_optional">Pre-installed tools with docker (optional)</h3>
+<div class="paragraph">
+<p>If <a href="https://www.docker.com">docker</a> is installed on your OS, you can use it to install quickly <code>Couchbase</code> server.
+This also provides an environment with command line tools like <code>travis</code> or <code>CloudFoundry</code> already installed.</p>
+</div>
+<div class="paragraph">
+<p>Prompt a shell and move to the directory where the repository has been cloned.
+Run the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>docker-compose build</code>:
+will build two services, one with a volume linked to the directory with your code, the other with <code>Couchbase</code> server</p>
+</li>
+<li>
+<p><code>docker-compose -d</code>:
+will start the two services described above. At this time you should be able to browse <a href="http://localhost:8091" class="bare">http://localhost:8091</a> in order to configure <code>Couchbase</code></p>
+</li>
+<li>
+<p><code>docker-compose run reactivity bash</code>:
+will open a bash where <code>/home/reactivity/reactivity</code> is bound to your source code.
+You can run command line tools like <code>cf</code> or <code>travis</code>. Couchbase service is also reachable via <code>couchbase</code> domain.
+You can verify it by running <code>curl -i couchbase:8091</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_and_run_the_backend">Build and run the backend</h3>
+<div class="paragraph">
+<p>First we are going to launch the <code>backend</code>.
+You need to build two artifacts with <code>maven</code>.
+You can achieve this through your <code>Java</code> IDE which has to resolve dependencies and compile code for the two following artifacts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>core/java-lib</code></p>
+</li>
+<li>
+<p><code>core/broadcaster</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With <code>IntelliJ</code>, it&#8217;s easy to import both modules with <code>File &gt; New &gt; Project From Existing Source</code> and then select <code>Maven</code> as the external model to be used.</p>
+</div>
+<div class="paragraph">
+<p>Once imported, you can execute the main class <code>io.reactivity.core.broadcaster.Application</code> of the <code>broadcaster</code> project to start the server.
+Make sure you have a local instance of <code>Couchbase</code> which is running.
+The application will try to connect to it on its default <a href="http://docs.couchbase.com/admin/admin/Install/install-networkPorts.html">ports</a>.</p>
+</div>
+<div class="paragraph">
+<p>The application is launched with <code>Spring Boot</code> and uses <code>Netty</code> by default.
+You can alternatively use <code>tomcat</code> by enabling the <code>tomcat</code> profile in <code>maven</code>.
+By default the server listens the port <code>8080</code>, you should be able to see a test page by browsing <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a>.</p>
+</div>
+<div class="paragraph">
+<p>The application stores documents in the <code>artifact</code> bucket of <code>Couchbase</code> by default.
+You can configure a different bucket and <code>Couchbase</code> server location with the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>reactivity.couchbase.nodes</code>: a comma separated list of hosts</p>
+</li>
+<li>
+<p><code>reactivity.couchbase.bucket</code>: the bucket name where data are stored</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Those two properties can be specified in several ways and are resolved with <code>Spring Boot</code>.
+You can see the different options offered by the framework <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>With <code>IntelliJ</code>, a possible option is to execute the main class with the properties declared as parameter.
+You can achieve this by editing the Run/Debug Configuration of the main <code>Application</code> and specifying the following information in <code>Program arguments</code>:</p>
+</div>
+<div class="paragraph">
+<p><code>--reactivity.couchbase.nodes=[my host goes here] --reactivity.couchbase.bucket=[my bucket goes here]</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you want to insert some random artifacts to the database, please note that the <code>RepositoryTest</code> test class can do it for you.
+Simply execute the unit tests to insert some data. You will see them in the test page at <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+Please note that the unit tests currently not use the <code>Spring Boot</code> property resolution mechanism.
+If you want to specify a specific value for a property, you will have to declare it as an environment variable available during test execution.
+With <code>IntelliJ</code>, simply edit the Run/Debug Configuration of your unit test and specify the environment variables <code>REACTIVITY_COUCHBASE_NODES</code> and <code>REACTIVITY_COUCHBASE_BUCKET</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_and_run_the_frontend_web_application">Build and run the frontend web application</h3>
+<div class="paragraph">
+<p>The frontend web application manages the dependencies with <code>npm</code> and is packaged with <code>gulp</code>.
+Simply move to the <code>front</code> directory, open a command line and run the following commands:</p>
+</div>
+<div class="paragraph">
+<p><code>npm install</code>
+<code>npm start</code></p>
+</div>
+<div class="paragraph">
+<p>This will install the dependencies and then start a HTTP server listening the port 3000.
+You should be able to browse <a href="http://localhost:3000" class="bare">http://localhost:3000</a> at this moment.
+The HTTP server is also configured to redirect traffic from <a href="http://localhost:3000/api" class="bare">http://localhost:3000/api</a> to <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a>.
+This allows the frontend web application to naturally consume the backend application previously started.</p>
+</div>
+<div class="paragraph">
+<p>You can refer to the <code>README.md</code> inside the <code>front</code> directory for more details.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cloudfoundry">CloudFoundry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section gives a step-by-step guide to install <code>Reactivity</code> on <code>CloudFoundry</code>.</p>
+</div>
+<div class="paragraph">
+<p>The guide focuses on a deployment from your local environment.
+Those steps can be automated for you regarding the continuous integration system you use.
+For instance refer to <a href="https://docs.travis-ci.com/user/deployment/cloudfoundry">this documentation</a> for a deployment from <code>travis</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites_2">Prerequisites</h3>
+<div class="paragraph">
+<p>Before installing the specific components related to <code>Reactivity</code>, make sure you have installed the following tools:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A recent version of <a href="https://git-scm.com/downloads">GIT client</a></p>
+</li>
+<li>
+<p>A recent version of <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java 8</a></p>
+</li>
+<li>
+<p>The latest version of <a href="https://maven.apache.org">Maven 3</a></p>
+</li>
+<li>
+<p>The latest LTS of <a href="https://nodejs.org/en">NodeJS</a> with a recent version of <code>npm</code></p>
+</li>
+<li>
+<p>A recent version of <code>CloudFoundry</code> <a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">CLI</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_clone_the_repository_2">Clone the repository</h3>
+<div class="paragraph">
+<p>Core components are hosted in <a href="https://github.com/reactivity-io/reactivity">this repository</a>.
+You can <a href="https://help.github.com/articles/fork-a-repo">fork it</a> and then <a href="https://help.github.com/articles/cloning-a-repository">clone it</a>.
+Identify the branch of the tag corresponding to the version of the code that you want to deploy and checkout it.</p>
+</div>
+<div class="paragraph">
+<p>The <code>reactivity</code> repository is currently organized with the following structure:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>core</code> directory containing the backend APIs packaged with <code>maven</code>.</p>
+</li>
+<li>
+<p>A <code>front</code> directory containing the frontend web application packaged with <code>NodeJs</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_prepare_the_manifest_yml">Prepare the manifest.yml</h3>
+<div class="paragraph">
+<p>You have a <code>manifest.yml</code> file that you can customize according to your need.
+You should have a particular attention to the routes that are configured for each module.
+Adapt them according to the domains registered inside your <code>CloudFoundry</code> instance.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_package_the_application">Package the application</h3>
+<div class="paragraph">
+<p>First, move to the <code>core/java-lib</code> directory and run <code>mvn clean install -Dmaven.test.skip</code>.
+Then, move to the <code>core/broadcaster</code> directory and run the same command.
+This will generate a <code>JAR</code> file in the <code>core/broadcaster/target</code> directory to be deployed.</p>
+</div>
+<div class="paragraph">
+<p>Finally, move to the <code>front</code> directory and run <code>npm run dist</code>.
+This will package the static files to be deployed in a <code>front/dist</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>Now we can upload the artifacts to <code>CloudFoundry</code>.
+Use <code>cf login</code> to identify yourself with the remote server (see more details <a href="https://docs.cloudfoundry.org/cf-cli/getting-started.html">here</a>).</p>
+</div>
+<div class="paragraph">
+<p>Then push the apps with <code>cf push</code> from the root directory.
+This will use the <code>manifest.yml</code> and uploads the two artifacts.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configure_environment_variables">Configure environment variables</h3>
+<div class="paragraph">
+<p>The backend will try to connect to <code>Couchbase</code> when it starts.
+You can define in <code>CloudFoundry</code> the following environment variables to specify the location of your server.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>REACTIVITY_COUCHBASE_NODES</code>: a comma separated list of hosts</p>
+</li>
+<li>
+<p><code>REACTIVITY_COUCHBASE_BUCKET</code>: the bucket name where data are stored</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-03-04 15:31:41 UTC
+</div>
+</div>
+</body>
+</html>

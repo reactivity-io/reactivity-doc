@@ -1,0 +1,8 @@
+language: java
+jdk:
+- oraclejdk8
+script: bash ./deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: "094e2d6354aa"
+  - COMMIT_AUTHOR_EMAIL: "guidrouet@gmail.com"

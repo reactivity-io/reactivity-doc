@@ -1,0 +1,161 @@
+== Purpose
+
+This page describes how to install and deploy `Reactivity` in different type of environments in order to use it.
+
+== Development
+
+This section gives a step-by-step guide to install `Reactivity` locally.
+This is for development purpose only.
+
+=== Prerequisites
+
+Before installing the specific components related to `Reactivity`, make sure you have installed the following tools:
+
+* A recent version of https://git-scm.com/downloads[GIT client]
+* A recent version of http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java 8]
+* The latest version of https://maven.apache.org[Maven 3]
+* The latest LTS of https://nodejs.org/en[NodeJS] with a recent version of `npm`
+* Your favorite IDE for `Java` and `Web` development (some configuration details will be described for `IntelliJ`)
+* The latest version of https://www.couchbase.com/nosql-databases/downloads[Couchbase 3 (community edition)]. See how to get it with docker below if you use it
+
+=== Clone the repository
+
+Core components are hosted in https://github.com/reactivity-io/reactivity[this repository].
+You can https://help.github.com/articles/fork-a-repo[fork it] and then https://help.github.com/articles/cloning-a-repository[clone it].
+The branching model follows the https://guides.github.com/introduction/flow[GitHub flow].
+You will find for each https://github.com/reactivity-io/reactivity/issues[feature] under development a dedicated branch.
+
+The `reactivity` repository is currently organized with the following structure:
+
+* A `core` directory containing the backend APIs developed in `Java` with `Spring Framework`.
+* A `front` directory containing the frontend web application developed in `Javascript` with `Polymer2`.
+
+=== Pre-installed tools with docker (optional)
+
+If https://www.docker.com[docker] is installed on your OS, you can use it to install quickly `Couchbase` server.
+This also provides an environment with command line tools like `travis` or `CloudFoundry` already installed.
+
+Prompt a shell and move to the directory where the repository has been cloned.
+Run the following commands:
+
+* `docker-compose build`:
+will build two services, one with a volume linked to the directory with your code, the other with `Couchbase` server
+* `docker-compose -d`:
+will start the two services described above. At this time you should be able to browse http://localhost:8091 in order to configure `Couchbase`
+* `docker-compose run reactivity bash`:
+will open a bash where `/home/reactivity/reactivity` is bound to your source code.
+You can run command line tools like `cf` or `travis`. Couchbase service is also reachable via `couchbase` domain.
+You can verify it by running `curl -i couchbase:8091`
+
+=== Build and run the backend
+
+First we are going to launch the `backend`.
+You need to build two artifacts with `maven`.
+You can achieve this through your `Java` IDE which has to resolve dependencies and compile code for the two following artifacts:
+
+* `core/java-lib`
+* `core/broadcaster`
+
+With `IntelliJ`, it's easy to import both modules with `File > New > Project From Existing Source` and then select `Maven` as the external model to be used.
+
+Once imported, you can execute the main class `io.reactivity.core.broadcaster.Application` of the `broadcaster` project to start the server.
+Make sure you have a local instance of `Couchbase` which is running.
+The application will try to connect to it on its default http://docs.couchbase.com/admin/admin/Install/install-networkPorts.html[ports].
+
+The application is launched with `Spring Boot` and uses `Netty` by default.
+You can alternatively use `tomcat` by enabling the `tomcat` profile in `maven`.
+By default the server listens the port `8080`, you should be able to see a test page by browsing http://localhost:8080/.
+
+The application stores documents in the `artifact` bucket of `Couchbase` by default.
+You can configure a different bucket and `Couchbase` server location with the following properties:
+
+* `reactivity.couchbase.nodes`: a comma separated list of hosts
+* `reactivity.couchbase.bucket`: the bucket name where data are stored
+
+Those two properties can be specified in several ways and are resolved with `Spring Boot`.
+You can see the different options offered by the framework https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html[here].
+
+With `IntelliJ`, a possible option is to execute the main class with the properties declared as parameter.
+You can achieve this by editing the Run/Debug Configuration of the main `Application` and specifying the following information in `Program arguments`:
+
+`--reactivity.couchbase.nodes=[my host goes here] --reactivity.couchbase.bucket=[my bucket goes here]`
+
+NOTE: If you want to insert some random artifacts to the database, please note that the `RepositoryTest` test class can do it for you.
+Simply execute the unit tests to insert some data. You will see them in the test page at http://localhost:8080/.
+
+IMPORTANT: Please note that the unit tests currently not use the `Spring Boot` property resolution mechanism.
+If you want to specify a specific value for a property, you will have to declare it as an environment variable available during test execution.
+With `IntelliJ`, simply edit the Run/Debug Configuration of your unit test and specify the environment variables `REACTIVITY_COUCHBASE_NODES` and `REACTIVITY_COUCHBASE_BUCKET`.
+
+=== Build and run the frontend web application
+
+The frontend web application manages the dependencies with `npm` and is packaged with `gulp`.
+Simply move to the `front` directory, open a command line and run the following commands:
+
+`npm install`
+`npm start`
+
+This will install the dependencies and then start a HTTP server listening the port 3000.
+You should be able to browse http://localhost:3000 at this moment.
+The HTTP server is also configured to redirect traffic from http://localhost:3000/api to http://localhost:8080/.
+This allows the frontend web application to naturally consume the backend application previously started.
+
+You can refer to the `README.md` inside the `front` directory for more details.
+
+== CloudFoundry
+
+This section gives a step-by-step guide to install `Reactivity` on `CloudFoundry`.
+
+The guide focuses on a deployment from your local environment.
+Those steps can be automated for you regarding the continuous integration system you use.
+For instance refer to https://docs.travis-ci.com/user/deployment/cloudfoundry[this documentation] for a deployment from `travis`.
+
+=== Prerequisites
+
+Before installing the specific components related to `Reactivity`, make sure you have installed the following tools:
+
+* A recent version of https://git-scm.com/downloads[GIT client]
+* A recent version of http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java 8]
+* The latest version of https://maven.apache.org[Maven 3]
+* The latest LTS of https://nodejs.org/en[NodeJS] with a recent version of `npm`
+* A recent version of `CloudFoundry` https://docs.cloudfoundry.org/cf-cli/install-go-cli.html[CLI].
+
+=== Clone the repository
+
+Core components are hosted in https://github.com/reactivity-io/reactivity[this repository].
+You can https://help.github.com/articles/fork-a-repo[fork it] and then https://help.github.com/articles/cloning-a-repository[clone it].
+Identify the branch of the tag corresponding to the version of the code that you want to deploy and checkout it.
+
+The `reactivity` repository is currently organized with the following structure:
+
+* A `core` directory containing the backend APIs packaged with `maven`.
+* A `front` directory containing the frontend web application packaged with `NodeJs`.
+
+=== Prepare the manifest.yml
+
+You have a `manifest.yml` file that you can customize according to your need.
+You should have a particular attention to the routes that are configured for each module.
+Adapt them according to the domains registered inside your `CloudFoundry` instance.
+
+=== Package the application
+
+First, move to the `core/java-lib` directory and run `mvn clean install -Dmaven.test.skip`.
+Then, move to the `core/broadcaster` directory and run the same command.
+This will generate a `JAR` file in the `core/broadcaster/target` directory to be deployed.
+
+Finally, move to the `front` directory and run `npm run dist`.
+This will package the static files to be deployed in a `front/dist` directory.
+
+Now we can upload the artifacts to `CloudFoundry`.
+Use `cf login` to identify yourself with the remote server (see more details https://docs.cloudfoundry.org/cf-cli/getting-started.html[here]).
+
+Then push the apps with `cf push` from the root directory.
+This will use the `manifest.yml` and uploads the two artifacts.
+
+=== Configure environment variables
+
+The backend will try to connect to `Couchbase` when it starts.
+You can define in `CloudFoundry` the following environment variables to specify the location of your server.
+
+* `REACTIVITY_COUCHBASE_NODES`: a comma separated list of hosts
+* `REACTIVITY_COUCHBASE_BUCKET`: the bucket name where data are stored

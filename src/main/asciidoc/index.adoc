@@ -1,0 +1,20 @@
+= Introduction
+
+This reference covers all functional and technical design aspects of `Reactivity`.
+It helps developers to understand how `Reactivity` works and how it can be integrated, deployed and improved.
+
+include::functional-fundations.adoc[]
+
+= Architecture
+
+include::architecture.adoc[]
+
+= Data model
+
+include::data-model.adoc[]
+
+include::streaming-client.adoc[]
+
+= Installation
+
+include::install.adoc[]
