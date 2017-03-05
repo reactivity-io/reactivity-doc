@@ -538,6 +538,7 @@ Therefore, any producer must use a particular data structure in their <code>JSON
 <div class="content">
 <pre>{
   "version" : "The module version",
+  "snapshot" : "A boolean indicating if the version is a snapshot"
   "event" : "The event type here",
   "data" : "The data here",
   "timestamp" : "The event timestamp",
@@ -555,6 +556,14 @@ By default, new version must be backward compatible which means that a consumer 
 </div>
 <div class="paragraph">
 <p>Version format follows the <a href="http://semver.org">semver</a> protocol.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_snapshot">snapshot</h3>
+<div class="paragraph">
+<p>The <code>snapshot</code> field indicates if the <code>version</code> is under development.
+Snapshots are not always backward compatible, an the backend will never send snapshot documents when the application version is a release.
+Therefore, <code>snapshot</code> will be always <code>false</code> in production.</p>
 </div>
 </div>
 <div class="sect2">
@@ -611,6 +620,7 @@ The only chance for the web application to understand the type of data represent
 <pre>{
   "topic" : "organization|user|artifact"
   "version" : "...",
+  "snapshot" : "...",
   "event" : "...",
   "data" : "...",
   "timestamp" : "...",
@@ -641,6 +651,7 @@ They allow to identify the message inside <code>Reactivity</code> system and to 
 <div class="content">
 <pre>{
   "version" : "...",
+  "snapshot" : "...",
   "event" : "...",
   "data" : "...",
   "tag" : "..."
@@ -710,6 +721,7 @@ For instance:</p>
 <div class="content">
 <pre>{
     "version" : "The module version",
+    "snapshot" : "...",
     "event" : "The event type here",
     "data" : {
         "my-extension-some-property" : "some value"
@@ -974,11 +986,11 @@ Therefore, no more information than the <code>id</code> is required to identify 
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>   {
-"category": "The category ID"
-       "name" : "The name of the item"
-       "picture" : "The picture of the item"
-   }</pre>
+<pre>{
+    "category": "The category ID"
+    "name" : "The name of the item"
+    "picture" : "The picture of the item"
+}</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1320,7 +1332,7 @@ Therefore, no more information than the <code>id</code> is required to identify 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-04 19:20:44 UTC
+Last updated 2017-03-05 08:51:26 UTC
 </div>
 </div>
 </body>
