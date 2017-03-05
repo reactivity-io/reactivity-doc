@@ -15,6 +15,7 @@ Therefore, any producer must use a particular data structure in their `JSON` doc
 
     {
 		    "version" : "The module version",
+		    "snapshot" : "A boolean indicating if the version is a snapshot"
 		    "event" : "The event type here",
 		    "data" : "The data here",
 		    "timestamp" : "The event timestamp",
@@ -29,6 +30,12 @@ This version can be used by the consumer to know what kind of assertion can be m
 By default, new version must be backward compatible which means that a consumer should be able to deal with an event flagged with an older version.
 
 Version format follows the http://semver.org[semver] protocol.
+
+=== snapshot
+
+The `snapshot` field indicates if the `version` is under development.
+Snapshots are not always backward compatible, an the backend will never send snapshot documents when the application version is a release.
+Therefore, `snapshot` will be always `false` in production.
 
 === event 
 
@@ -66,6 +73,7 @@ The only chance for the web application to understand the type of data represent
     {
 		    "topic" : "organization|user|artifact"
 		    "version" : "...",
+		    "snapshot" : "...",
 		    "event" : "...",
 		    "data" : "...",
 		    "timestamp" : "...",
@@ -89,6 +97,7 @@ Therefore, a producer can generate a message that simply have this structure:
 
     {
 		    "version" : "...",
+		    "snapshot" : "...",
 		    "event" : "...",
 		    "data" : "...",
 		    "tag" : "..."
@@ -142,7 +151,8 @@ The extension is free to manage specific properties at any level of the message.
 For instance:
 
     {
-        "version" : "The module version", 
+        "version" : "The module version",
+        "snapshot" : "...",
         "event" : "The event type here",
         "data" : {
             "my-extension-some-property" : "some value"
@@ -300,7 +310,7 @@ Therefore, no more information than the `id` is required to identify the removed
 The `ADD_CATEGORY_ITEM`, `READ_CATEGORY_CATEGORY` and `UPDATE_CATEGORY_ITEM` events for an `Organization` have a `data` attribute associated to a value that looks like this:
 
     {
-	"category": "The category ID"
+        "category": "The category ID"
         "name" : "The name of the item"
         "picture" : "The picture of the item"
     }
