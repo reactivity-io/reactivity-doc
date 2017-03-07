@@ -1,0 +1,93 @@
+== Reactivity API reference
+
+This documentation describes the different endpoints allowing manage data inside the `Reactivity` platform.
+Refer to the link:data-model.html[data model reference] to understand the different fundamental stored entities and how they are streamed as events.
+
+=== Load the organizations
+
+Loads all the organizations for the current user.
+
+==== Example of request
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-organizations-example/curl-request.adoc[]
+
+==== Example of HTTP request
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-organizations-example/http-request.adoc[]
+
+==== Example of HTTP response
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-organizations-example/http-response.adoc[]
+
+==== Response body and fields description
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-organizations-example/response-body.adoc[]
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-organizations-example/response-fields.adoc[]
+
+==== Example of response error
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-organizations-error-example/response-body.adoc[]
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-organizations-error-example/response-fields.adoc[]
+
+=== Subscribe to an organization
+
+You can subscribe to a particular organization to receive the view and the artifacts corresponding to those views.
+
+==== Example of request
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/subscribe-example/curl-request.adoc[]
+
+==== Example of HTTP request
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/subscribe-example/http-request.adoc[]
+
+==== Example of HTTP response
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/subscribe-example/http-request.adoc[]
+
+==== Response body and fields description
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/subscribe-example/response-body.adoc[]
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/subscribe-example/response-fields.adoc[]
+
+==== Example of response error
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/subscribe-error-example/response-body.adoc[]
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/subscribe-error-example/response-fields.adoc[]
+
+=== Retrieve additional artifacts
+
+When a view is loaded, you also receive a subset of the associated artifacts according to the configured `Period`.
+You can use endpoints to load more artifacts.
+
+==== Example of request
+
+You can retrieve _n_ last artifacts with the specified max age.
+In this example the number of artifacts is limited to _1_ and the max age is _1_.
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-artifacts-lte-max-age-example/curl-request.adoc[]
+
+You can also retrieve _n_ first artifacts with a starting date as specified min age.
+In this example the number of artifacts is limited to _1_ and the min age is _1_.
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-artifacts-gte-min-age-example/curl-request.adoc[]
+
+==== Example of HTTP response
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-artifacts-lte-max-age-example/http-response.adoc[]
+
+==== Response body and fields description
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-artifacts-lte-max-age-example/response-body.adoc[]
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-artifacts-lte-max-age-example/response-fields.adoc[]
+
+==== Example of response error
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-artifacts-lte-max-age-error-example/response-body.adoc[]
+
+include::https://raw.githubusercontent.com/reactivity-io/reactivity/doc-snippets/load-artifacts-lte-max-age-error-example/response-fields.adoc[]

@@ -27,6 +27,9 @@
                             <goal>process-asciidoc</goal>
                         </goals>
                         <configuration>
+                            <attributes>
+                                <allow-uri-read>true</allow-uri-read>
+                            </attributes>
                             <backend>html5</backend>
                             <sourceHighlighter>coderay</sourceHighlighter>
                         </configuration>
