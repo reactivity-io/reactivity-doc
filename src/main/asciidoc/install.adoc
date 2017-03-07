@@ -40,7 +40,7 @@ Run the following commands:
 
 * `docker-compose build`:
 will build two services, one with a volume linked to the directory with your code, the other with `Couchbase` server
-* `docker-compose -d`:
+* `docker-compose up -d`:
 will start the two services described above. At this time you should be able to browse http://localhost:8091 in order to configure `Couchbase`
 * `docker-compose run reactivity bash`:
 will open a bash where `/home/reactivity/reactivity` is bound to your source code.
