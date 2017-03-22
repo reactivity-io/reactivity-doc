@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>Purpose</title>
+<title>Functional foundations</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -510,308 +510,179 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="article">
 <div id="header">
+<h1>Functional foundations</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_purpose">Purpose</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This page describes how to install and deploy <code>Reactivity</code> in different type of environments in order to use it.</p>
+<p><code>Reactivity</code> is built on top of a set functional foundations described here.
+They define the fundamental business objects manipulated by the users and their dependencies.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_development">Development</h2>
+<h2 id="_user">User</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section gives a step-by-step guide to install <code>Reactivity</code> locally.
-This is for development purpose only.</p>
+<p>Obviously <code>Reactivity</code> manages the <code>user</code> who needs to create an account in order to use it.
+There is no particular disposition in the definition of a <code>user</code> that differs from the common considerations encountered in softwares.</p>
 </div>
-<div class="sect2">
-<h3 id="_prerequisites">Prerequisites</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_organization">Organization</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Before installing the specific components related to <code>Reactivity</code>, make sure you have installed the following tools:</p>
+<p>The <code>organization</code> is a working space created by a user where the activity is managed.
+The creator of an <code>organization</code> is free to invite other <code>users</code> to join it and interract with them inside that space.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_artifact">Artifact</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Artifacts</code> are objects created by the users to represent their activity.
+A fundamental property of the artifact is the <code>date</code>, whose meaning is up to the user.</p>
+</div>
+<div class="paragraph">
+<p>The rest of their structure is composed by a set of fields.
+Some of the fields are immutable, can be mandatory and pre-defined by <code>Reactivity</code>.
+Those particular fields will be mentionned inside the <code>Category</code> section.
+This section will also explain how additional fields can be defined at organization level by the users to track additional activity information in the artifacts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_category">Category</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Categories</code> are activity qualifiers.
+They can be defined as a catalog of free values at <code>organization</code> level.
+A <code>category</code> can be used to tag an activity and is identified as a field of the artifact, marked as optional or not by the <code>user</code>.
+This offers filtering and grouping capabilities.
+<code>Reactivity</code> defines built in categories with a data source based on the organization&#8217;s state:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A recent version of <a href="https://git-scm.com/downloads">GIT client</a></p>
+<p>User: the <code>user category</code> is an artifact&#8217;s field optionally filled that is composed of the users associated to the current selected organization.</p>
 </li>
 <li>
-<p>A recent version of <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java 8</a></p>
+<p>Status: a <code>status category</code> is an artifact&#8217;s field optionnally filled with <code>TODO</code>, <code>WIP</code> or <code>DONE</code> value.</p>
 </li>
 <li>
-<p>The latest version of <a href="https://maven.apache.org">Maven 3</a></p>
-</li>
-<li>
-<p>The latest LTS of <a href="https://nodejs.org/en">NodeJS</a> with a recent version of <code>npm</code></p>
-</li>
-<li>
-<p>Your favorite IDE for <code>Java</code> and <code>Web</code> development (some configuration details will be described for <code>IntelliJ</code>)</p>
-</li>
-<li>
-<p>The latest version of <a href="https://www.couchbase.com/nosql-databases/downloads">Couchbase 3 (community edition)</a>. See how to get it with docker below if you use it</p>
+<p>Interval: an <code>interval</code> allows to group the activity by <code>day</code>, <code>week</code>, <code>month</code>, <code>hour</code> or <code>minute</code>. This <code>category</code> can&#8217;t be associated to an artifact but allows a <code>table view</code> to compute its <code>date</code>, as described in the <code>Table</code> section.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_clone_the_repository">Clone the repository</h3>
 <div class="paragraph">
-<p>Core components are hosted in <a href="https://github.com/reactivity-io/reactivity">this repository</a>.
-You can <a href="https://help.github.com/articles/fork-a-repo">fork it</a> and then <a href="https://help.github.com/articles/cloning-a-repository">clone it</a>.
-The branching model follows the <a href="https://guides.github.com/introduction/flow">GitHub flow</a>.
-You will find for each <a href="https://github.com/reactivity-io/reactivity/issues">feature</a> under development a dedicated branch.</p>
-</div>
-<div class="paragraph">
-<p>The <code>reactivity</code> repository is currently organized with the following structure:</p>
+<p>Following rules are defined for the <code>categories</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A <code>core</code> directory containing the backend APIs developed in <code>Java</code> with <code>Spring Framework</code>.</p>
+<p><code>User</code> and <code>Status</code> categories can be customized at organization level. Additional items can be added with free labels and pre-defined items can be renamed or removed.</p>
 </li>
 <li>
-<p>A <code>front</code> directory containing the frontend web application developed in <code>Javascript</code> with <code>Polymer2</code>.</p>
+<p>If the <code>day interval</code> category is used, the date of the artifact is automatically computed according to the associated day.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_pre_installed_tools_with_docker_optional">Pre-installed tools with docker (optional)</h3>
+</div>
+<div class="sect1">
+<h2 id="_view">View</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>If <a href="https://www.docker.com">docker</a> is installed on your OS, you can use it to install quickly <code>Couchbase</code> server.
-This also provides an environment with command line tools like <code>travis</code> or <code>CloudFoundry</code> already installed.</p>
+<p>A <code>view</code> is a representation of the activity produced over a period of time by the <code>users</code> inside an <code>organization</code>.</p>
 </div>
 <div class="paragraph">
-<p>Prompt a shell and move to the directory where the repository has been cloned.
-Run the following commands:</p>
+<p>This fundamental object defines from when the activity of the <code>organization</code> will be viewed:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>docker-compose build</code>:
-will build two services, one with a volume linked to the directory with your code, the other with <code>Couchbase</code> server</p>
+<p>A <code>start date</code> can be explictely defined. In that case, a <code>end date</code> can be optionally specified. If no <code>end date</code> is defined, the period covers all the activity newer than the <code>start date</code>.</p>
 </li>
 <li>
-<p><code>docker-compose up -d</code>:
-will start the two services described above. At this time you should be able to browse <a href="http://localhost:8091" class="bare">http://localhost:8091</a> in order to configure <code>Couchbase</code></p>
-</li>
-<li>
-<p><code>docker-compose run reactivity bash</code>:
-will open a bash where <code>/home/reactivity/reactivity</code> is bound to your source code.
-You can run command line tools like <code>cf</code> or <code>travis</code>. Couchbase service is also reachable via <code>couchbase</code> domain.
-You can verify it by running <code>curl -i couchbase:8091</code></p>
+<p>If no <code>start date</code> is defined, the <strong>n</strong> last <code>artifacts</code> are displayed.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Optionally the view can be also associated to a category that will be used to filter more the activity to display.
+<code>Artifact</code> created in that view will be automatically associated to that category.</p>
+</div>
+<div class="paragraph">
+<p>Many <code>views</code> can be defined inside an <code>organization</code>.
+A <code>view</code> is also typed with the structure of data that is ready to consume.
+Those structures have a immutable definition and are enumerated by <code>Reactivity</code> for all <code>organizations</code>.</p>
+</div>
+<div class="paragraph">
+<p>A <code>view</code> can be marked as private by the <code>user</code> who creates it in order to not make it visible by the others.</p>
+</div>
+<div class="sect2">
+<h3 id="_list">List</h3>
+<div class="paragraph">
+<p>A <code>list</code> is a basic data structure that types the view that displays the <code>artifacts</code> on several lines.
+A line can be configured to display some categories and hide some other information.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_and_run_the_backend">Build and run the backend</h3>
+<h3 id="_table">Table</h3>
 <div class="paragraph">
-<p>First we are going to launch the <code>backend</code>.
-You need to build two artifacts with <code>maven</code>.
-You can achieve this through your <code>Java</code> IDE which has to resolve dependencies and compile code for the two following artifacts:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>core/java-lib</code></p>
-</li>
-<li>
-<p><code>core/broadcaster</code></p>
-</li>
-</ul>
+<p>A <code>table</code> is a data structure that can type a <code>view</code>.
+A <code>table</code> displays the <code>artifacts</code> in a matrix with one dimension (column) or optionally with two dimensions (columns + rows).
+Columns and rows are defined with the available <code>categories</code> (<code>user</code>, <code>status</code>, <code>interval</code> and additional catalogs defined in the organization).
+When the <code>categories</code> are used to list the columns or the rows, their values are automatically associated to the artifact regarding its position inside the <code>table</code>.</p>
 </div>
 <div class="paragraph">
-<p>With <code>IntelliJ</code>, it&#8217;s easy to import both modules with <code>File &gt; New &gt; Project From Existing Source</code> and then select <code>Maven</code> as the external model to be used.</p>
+<p>When the <code>artifact</code> 's fields values corresponding to the <code>category</code> used in the columns and the rows are not defined, <code>artifacts</code> are displayed outside the <code>table</code>.
+A zone dedicated to that purpose is visible and is part of the <code>table</code> type.</p>
 </div>
 <div class="paragraph">
-<p>Once imported, you can execute the main class <code>io.reactivity.core.broadcaster.Application</code> of the <code>broadcaster</code> project to start the server.
-Make sure you have a local instance of <code>Couchbase</code> which is running.
-The application will try to connect to it on its default <a href="http://docs.couchbase.com/admin/admin/Install/install-networkPorts.html">ports</a>.</p>
+<p>When an <code>interval category</code> is used to define the columns or the rows, the <code>artifact date</code> is automatically computed with the associated value that has been obtained relatively to the <code>starting date</code> of the <code>view</code>.</p>
 </div>
+<div class="sect3">
+<h4 id="_time_series">Time series</h4>
 <div class="paragraph">
-<p>The application is launched with <code>Spring Boot</code> and uses <code>Netty</code> by default.
-You can alternatively use <code>tomcat</code> by enabling the <code>tomcat</code> profile in <code>maven</code>.
-By default the server listens the port <code>8080</code>, you should be able to see a test page by browsing <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a>.</p>
+<p><code>Time series</code> is a data structure that type a <code>view</code>.
+The values correspond to the result of an operation that has counted the number of <code>artifacts</code> by grouping them with a particular <code>category</code> value.
+The result of that transformation allows the <code>view</code> to let the <code>user</code> chose between different kind of chart (<code>line</code>, <code>pie</code>, <code>bar</code>, <code>gauge</code>, etc).</p>
 </div>
-<div class="paragraph">
-<p>The application stores documents in the <code>artifact</code> bucket of <code>Couchbase</code> by default.
-You can configure a different bucket and <code>Couchbase</code> server location with the following properties:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>reactivity.couchbase.nodes</code>: a comma separated list of hosts</p>
-</li>
-<li>
-<p><code>reactivity.couchbase.bucket</code>: the bucket name where data are stored</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Those two properties can be specified in several ways and are resolved with <code>Spring Boot</code>.
-You can see the different options offered by the framework <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html">here</a>.</p>
-</div>
-<div class="paragraph">
-<p>With <code>IntelliJ</code>, a possible option is to execute the main class with the properties declared as parameter.
-You can achieve this by editing the Run/Debug Configuration of the main <code>Application</code> and specifying the following information in <code>Program arguments</code>:</p>
-</div>
-<div class="paragraph">
-<p><code>--reactivity.couchbase.nodes=[my host goes here] --reactivity.couchbase.bucket=[my bucket goes here]</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-If you want to insert some random artifacts to the database, please note that the <code>RepositoryTest</code> test class can do it for you.
-Simply execute the unit tests to insert some data. You will see them in the test page at <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-Please note that the unit tests currently not use the <code>Spring Boot</code> property resolution mechanism.
-If you want to specify a specific value for a property, you will have to declare it as an environment variable available during test execution.
-With <code>IntelliJ</code>, simply edit the Run/Debug Configuration of your unit test and specify the environment variables <code>REACTIVITY_COUCHBASE_NODES</code> and <code>REACTIVITY_COUCHBASE_BUCKET</code>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_build_and_run_the_frontend_web_application">Build and run the frontend web application</h3>
-<div class="paragraph">
-<p>The frontend web application manages the dependencies with <code>npm</code> and is packaged with <code>gulp</code>.
-Simply move to the <code>front</code> directory, open a command line and run the following commands:</p>
-</div>
-<div class="paragraph">
-<p><code>npm install</code>
-<code>npm start</code></p>
-</div>
-<div class="paragraph">
-<p>This will install the dependencies and then start a HTTP server listening the port 3000.
-You should be able to browse <a href="http://localhost:3000" class="bare">http://localhost:3000</a> at this moment.
-The HTTP server is also configured to redirect traffic from <a href="http://localhost:3000/api" class="bare">http://localhost:3000/api</a> to <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a>.
-This allows the frontend web application to naturally consume the backend application previously started.</p>
-</div>
-<div class="paragraph">
-<p>You can refer to the <code>README.md</code> inside the <code>front</code> directory for more details.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cloudfoundry">CloudFoundry</h2>
+<h2 id="_summary">Summary</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section gives a step-by-step guide to install <code>Reactivity</code> on <code>CloudFoundry</code>.</p>
-</div>
-<div class="paragraph">
-<p>The guide focuses on a deployment from your local environment.
-Those steps can be automated for you regarding the continuous integration system you use.
-For instance refer to <a href="https://docs.travis-ci.com/user/deployment/cloudfoundry">this documentation</a> for a deployment from <code>travis</code>.</p>
-</div>
-<div class="sect2">
-<h3 id="_prerequisites_2">Prerequisites</h3>
-<div class="paragraph">
-<p>Before installing the specific components related to <code>Reactivity</code>, make sure you have installed the following tools:</p>
+<p>Following fundamental objects have been defined:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A recent version of <a href="https://git-scm.com/downloads">GIT client</a></p>
+<p><code>User</code>: people who interract with <code>Reactivity</code> to manage their activity</p>
 </li>
 <li>
-<p>A recent version of <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java 8</a></p>
+<p><code>Organization</code>: the space where <code>users</code> manage their activity</p>
 </li>
 <li>
-<p>The latest version of <a href="https://maven.apache.org">Maven 3</a></p>
+<p><code>Artifact</code>: the object that reflects the <code>user</code> activity</p>
 </li>
 <li>
-<p>The latest LTS of <a href="https://nodejs.org/en">NodeJS</a> with a recent version of <code>npm</code></p>
+<p><code>View</code>: the way activity is viewed by <code>users</code> and which activity of the <code>organization</code></p>
 </li>
 <li>
-<p>A recent version of <code>CloudFoundry</code> <a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">CLI</a>.</p>
+<p><code>Table</code> or <code>Time series</code>: a data structure selected by the <code>view</code> according to its needs to display the data</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_clone_the_repository_2">Clone the repository</h3>
 <div class="paragraph">
-<p>Core components are hosted in <a href="https://github.com/reactivity-io/reactivity">this repository</a>.
-You can <a href="https://help.github.com/articles/fork-a-repo">fork it</a> and then <a href="https://help.github.com/articles/cloning-a-repository">clone it</a>.
-Identify the branch of the tag corresponding to the version of the code that you want to deploy and checkout it.</p>
-</div>
-<div class="paragraph">
-<p>The <code>reactivity</code> repository is currently organized with the following structure:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A <code>core</code> directory containing the backend APIs packaged with <code>maven</code>.</p>
-</li>
-<li>
-<p>A <code>front</code> directory containing the frontend web application packaged with <code>NodeJs</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_prepare_the_manifest_yml">Prepare the manifest.yml</h3>
-<div class="paragraph">
-<p>You have a <code>manifest.yml</code> file that you can customize according to your need.
-You should have a particular attention to the routes that are configured for each module.
-Adapt them according to the domains registered inside your <code>CloudFoundry</code> instance.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_package_the_application">Package the application</h3>
-<div class="paragraph">
-<p>First, move to the <code>core/java-lib</code> directory and run <code>mvn clean install -Dmaven.test.skip</code>.
-Then, move to the <code>core/broadcaster</code> directory and run the same command.
-This will generate a <code>JAR</code> file in the <code>core/broadcaster/target</code> directory to be deployed.</p>
-</div>
-<div class="paragraph">
-<p>Finally, move to the <code>front</code> directory and run <code>npm run dist</code>.
-This will package the static files to be deployed in a <code>front/dist</code> directory.</p>
-</div>
-<div class="paragraph">
-<p>Now we can upload the artifacts to <code>CloudFoundry</code>.
-Use <code>cf login</code> to identify yourself with the remote server (see more details <a href="https://docs.cloudfoundry.org/cf-cli/getting-started.html">here</a>).</p>
-</div>
-<div class="paragraph">
-<p>Then push the apps with <code>cf push</code> from the root directory.
-This will use the <code>manifest.yml</code> and uploads the two artifacts.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_configure_environment_variables">Configure environment variables</h3>
-<div class="paragraph">
-<p>The backend will try to connect to <code>Couchbase</code> when it starts.
-You can define in <code>CloudFoundry</code> the following environment variables to specify the location of your server.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>REACTIVITY_COUCHBASE_NODES</code>: a comma separated list of hosts</p>
-</li>
-<li>
-<p><code>REACTIVITY_COUCHBASE_BUCKET</code>: the bucket name where data are stored</p>
-</li>
-</ul>
-</div>
+<p>A set of basic <a href="mockups.pdf">mockups</a> illustrates how the different objects can be managed through the UI.</p>
 </div>
 </div>
 </div>
