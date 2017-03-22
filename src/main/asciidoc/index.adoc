@@ -3,7 +3,7 @@
 This reference covers all functional and technical design aspects of `Reactivity`.
 It helps developers to understand how `Reactivity` works and how it can be integrated, deployed and improved.
 
-include::functional-fundations.adoc[]
+include::functional-foundations.adoc[]
 
 = Architecture
 

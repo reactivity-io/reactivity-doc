@@ -1,6 +1,6 @@
-= Functional fundations
+= Functional foundations
 
-`Reactivity` is built on top of a set functional fundations described here.
+`Reactivity` is built on top of a set functional foundations described here.
 They define the fundamental business objects manipulated by the users and their dependencies.
 
 == User
