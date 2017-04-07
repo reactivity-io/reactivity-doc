@@ -22,3 +22,7 @@ include::api.adoc[]
 = Installation
 
 include::install.adoc[]
+
+= User guide
+
+include::userguide.adoc[]

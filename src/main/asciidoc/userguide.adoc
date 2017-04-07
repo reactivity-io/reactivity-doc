@@ -1,0 +1,26 @@
+= User guide
+
+This section describes the different features provided by `Reactivity`.
+Final users can rely on this documentation to understand how the different user interfaces work.
+
+== Connect to the application
+
+By default when the user connects to https://_reactivity-url_/, he is anonymously authenticated with a demo `Organization` automatically created.
+This organization is displayed in the dashboard provided in the root of the web site.
+
+image:organization-view.png[]
+
+== List the available view
+
+When the user selects an `Organization`, all the `Views` available for that applications are displayed tot the user.
+By default, the demo `Organization` is populated with a `List` view that displays a series of `Artifacts`.
+
+image:views.png[]
+
+== List view
+
+The user can select the `List` view displayed inside the `Organization` dashboard.
+When the `View` is loaded, the latest created `Artifacts`  are displayed from the top to the bottom of the list.
+The older `Artifacts` will be lazily loaded when the user scrolls down.
+
+image:list-view.png[]
